@@ -1,0 +1,66 @@
+[
+  {
+    "id": "gal-001",
+    "apartmentId": "apt-sylvan-shelter",
+    "title": "Block A — Front Elevation",
+    "category": "Apartment Building",
+    "imageUrl": "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&q=80",
+    "caption": "Sylvan Shelter Apartment main block, Maitri Nagar"
+  },
+  {
+    "id": "gal-002",
+    "apartmentId": "apt-sylvan-shelter",
+    "title": "Main Entrance & Security",
+    "category": "Entrance",
+    "imageUrl": "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=800&q=80",
+    "caption": "Gated entrance with 24/7 security desk"
+  },
+  {
+    "id": "gal-003",
+    "apartmentId": "apt-sylvan-shelter",
+    "title": "Covered Parking",
+    "category": "Parking",
+    "imageUrl": "https://images.unsplash.com/photo-1590674899484-d5640e854f66?w=800&q=80",
+    "caption": "Dedicated parking slot for every flat"
+  },
+  {
+    "id": "gal-004",
+    "apartmentId": "apt-sylvan-shelter",
+    "title": "Central Garden",
+    "category": "Garden",
+    "imageUrl": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80",
+    "caption": "Well-maintained landscaped garden"
+  },
+  {
+    "id": "gal-005",
+    "apartmentId": "apt-sylvan-shelter",
+    "title": "Children's Play Area",
+    "category": "Children's Play Area",
+    "imageUrl": "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80",
+    "caption": "Safe play zone for children"
+  },
+  {
+    "id": "gal-006",
+    "apartmentId": "apt-sylvan-shelter",
+    "title": "Community Hall",
+    "category": "Community Hall",
+    "imageUrl": "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80",
+    "caption": "Community hall for meetings and events"
+  },
+  {
+    "id": "gal-007",
+    "apartmentId": "apt-sylvan-shelter",
+    "title": "Ugadi Celebration 2025",
+    "category": "Festival Celebrations",
+    "imageUrl": "https://images.unsplash.com/photo-1605276374101-dee6cdf5dca5?w=800&q=80",
+    "caption": "Ugadi festival celebration in the community hall"
+  },
+  {
+    "id": "gal-008",
+    "apartmentId": "apt-sylvan-shelter",
+    "title": "Diwali Lighting 2024",
+    "category": "Festival Celebrations",
+    "imageUrl": "https://images.unsplash.com/photo-1605727216801-e27ce1d0cc36?w=800&q=80",
+    "caption": "Festival lighting at the apartment entrance"
+  }
+]

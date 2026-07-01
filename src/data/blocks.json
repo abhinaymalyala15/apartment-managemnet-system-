@@ -1,0 +1,11 @@
+[
+  {
+    "id": "block-a",
+    "apartmentId": "apt-sylvan-shelter",
+    "name": "Block A",
+    "code": "A",
+    "floorCount": 5,
+    "totalFlats": 55,
+    "description": "Main residential block — 11 flats per floor across 5 floors."
+  }
+]

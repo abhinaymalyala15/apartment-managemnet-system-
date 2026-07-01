@@ -1,0 +1,74 @@
+[
+  {
+    "id": "notice-001",
+    "apartmentId": "apt-sylvan-shelter",
+    "title": "Water Tank Cleaning — 12th July 2025",
+    "content": "Overhead and underground water tanks will be cleaned on Saturday, 12th July 2025 from 9:00 AM to 3:00 PM. Water supply will be interrupted during this period. Residents are requested to store sufficient water in advance.",
+    "category": "maintenance",
+    "publishedAt": "2025-07-01",
+    "priority": "high"
+  },
+  {
+    "id": "notice-002",
+    "apartmentId": "apt-sylvan-shelter",
+    "title": "Lift Preventive Maintenance — Block A",
+    "content": "Otis service engineers will carry out quarterly lift maintenance on 15th July 2025. Lifts may be temporarily unavailable between 10:00 AM and 2:00 PM. Please use stairs if required.",
+    "category": "maintenance",
+    "publishedAt": "2025-06-28",
+    "priority": "medium"
+  },
+  {
+    "id": "notice-003",
+    "apartmentId": "apt-sylvan-shelter",
+    "title": "Monthly Association Meeting — 20th July",
+    "content": "The monthly RWA meeting will be held on Sunday, 20th July 2025 at 10:00 AM in the Community Hall. Agenda includes maintenance budget review, parking rules, and festival planning. All owners are requested to attend.",
+    "category": "general",
+    "publishedAt": "2025-06-25",
+    "priority": "high"
+  },
+  {
+    "id": "notice-004",
+    "apartmentId": "apt-sylvan-shelter",
+    "title": "Independence Day Flag Hoisting",
+    "content": "Join us for flag hoisting and cultural programs on 15th August 2025 at 8:00 AM near the main entrance. Children are encouraged to participate in the fancy dress competition.",
+    "category": "event",
+    "publishedAt": "2025-06-20",
+    "priority": "low"
+  },
+  {
+    "id": "notice-005",
+    "apartmentId": "apt-sylvan-shelter",
+    "title": "Scheduled Power Shutdown — 8th July",
+    "content": "TSSPDCL has informed a planned power shutdown on 8th July 2025 from 10:00 AM to 4:00 PM for feeder maintenance in Dilsukhnagar. DG backup will be available for lifts and common areas.",
+    "category": "emergency",
+    "publishedAt": "2025-07-02",
+    "priority": "high"
+  },
+  {
+    "id": "notice-006",
+    "apartmentId": "apt-sylvan-shelter",
+    "title": "Fire Safety Inspection",
+    "content": "Annual fire safety inspection by the Fire Department is scheduled for 18th July 2025. Please ensure fire exits are clear and extinguishers are accessible. Cooperation of all residents is essential.",
+    "category": "maintenance",
+    "publishedAt": "2025-06-22",
+    "priority": "medium"
+  },
+  {
+    "id": "notice-007",
+    "apartmentId": "apt-sylvan-shelter",
+    "title": "Parking Rules — Reminder",
+    "content": "Residents are reminded that each flat is allotted one covered parking slot. Visitor vehicles must park in designated visitor bays only. Two-wheelers should be parked in the marked zones. Violators may be fined as per RWA bylaws.",
+    "category": "general",
+    "publishedAt": "2025-06-15",
+    "priority": "medium"
+  },
+  {
+    "id": "notice-008",
+    "apartmentId": "apt-sylvan-shelter",
+    "title": "Waste Segregation Awareness",
+    "content": "Please segregate wet and dry waste before handing over to the collection staff. Dry waste collection: Tuesday & Friday. Wet waste: daily 7:00–9:00 AM. Let us keep Sylvan Shelter clean and environmentally responsible.",
+    "category": "general",
+    "publishedAt": "2025-06-10",
+    "priority": "low"
+  }
+]

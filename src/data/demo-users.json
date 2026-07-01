@@ -1,0 +1,32 @@
+{
+  "resident": {
+    "id": "resident-srinivas",
+    "fullName": "Srinivas Malyala",
+    "email": "srinivas.malyala@gmail.com",
+    "phone": "+91 96396 33716",
+    "role": "resident",
+    "flatId": "flat-110",
+    "flatNumber": "110"
+  },
+  "inspector": {
+    "id": "user-inspector",
+    "fullName": "Apartment Inspector",
+    "email": "inspector@sylvanshelter.in",
+    "phone": "+91 96396 33717",
+    "role": "inspector"
+  },
+  "admin": {
+    "id": "user-admin",
+    "fullName": "Apartment Administrator",
+    "email": "abhinaymalyala15@gmail.com",
+    "phone": "+91 96396 33716",
+    "role": "admin"
+  },
+  "platform": {
+    "id": "user-super-admin",
+    "fullName": "Platform Super Admin",
+    "email": "admin@apartmenterp.in",
+    "phone": "+91 98765 43210",
+    "role": "super_admin"
+  }
+}
