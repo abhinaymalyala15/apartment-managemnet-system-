@@ -1,0 +1,72 @@
+[
+  {
+    "id": "vendor-otis",
+    "apartmentId": "apt-sylvan-shelter",
+    "name": "Otis Elevator Company",
+    "category": "Lift & escalator",
+    "phone": "+91 40 2345 6789",
+    "email": "service.hyd@otis.com",
+    "contactPerson": "Ravi Shankar",
+    "assetIds": ["asset-lift-a", "asset-lift-b"]
+  },
+  {
+    "id": "vendor-aquapure",
+    "apartmentId": "apt-sylvan-shelter",
+    "name": "AquaPure Services",
+    "category": "Plumbing & water treatment",
+    "phone": "+91 40 9876 5432",
+    "email": "ops@aquapure.in",
+    "contactPerson": "Suresh Reddy",
+    "assetIds": ["asset-water-tank"]
+  },
+  {
+    "id": "vendor-powergen",
+    "apartmentId": "apt-sylvan-shelter",
+    "name": "PowerGen Hyderabad",
+    "category": "Generator & electrical",
+    "phone": "+91 40 4567 8901",
+    "email": "support@powergenhyd.com",
+    "contactPerson": "Anil Kumar",
+    "assetIds": ["asset-generator"]
+  },
+  {
+    "id": "vendor-safefire",
+    "apartmentId": "apt-sylvan-shelter",
+    "name": "SafeFire Solutions",
+    "category": "Fire safety",
+    "phone": "+91 40 3210 9876",
+    "email": "inspections@safefire.in",
+    "contactPerson": "Priya Nair",
+    "assetIds": ["asset-fire-safety"]
+  },
+  {
+    "id": "vendor-secureview",
+    "apartmentId": "apt-sylvan-shelter",
+    "name": "SecureView Systems",
+    "category": "CCTV & security",
+    "phone": "+91 40 8765 4321",
+    "email": "amc@secureview.co.in",
+    "contactPerson": "Mohammed Ali",
+    "assetIds": ["asset-cctv"]
+  },
+  {
+    "id": "vendor-greenscape",
+    "apartmentId": "apt-sylvan-shelter",
+    "name": "GreenScape Hyderabad",
+    "category": "Landscaping",
+    "phone": "+91 40 6543 2109",
+    "email": "care@greenscape.in",
+    "contactPerson": "Lakshmi Devi",
+    "assetIds": ["asset-garden"]
+  },
+  {
+    "id": "vendor-sunpower",
+    "apartmentId": "apt-sylvan-shelter",
+    "name": "SunPower India",
+    "category": "Solar",
+    "phone": "+91 40 7890 1234",
+    "email": "service@sunpower.in",
+    "contactPerson": "Venkat Rao",
+    "assetIds": ["asset-solar"]
+  }
+]

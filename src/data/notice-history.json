@@ -1,0 +1,52 @@
+[
+  {
+    "id": "hist-001",
+    "noticeId": "notice-005",
+    "noticeTitle": "Scheduled Power Shutdown — 8th July",
+    "action": "emergency_sent",
+    "actor": "Ramesh Kumar",
+    "occurredAt": "2025-07-02T08:00:00",
+    "detail": "Emergency notice published to all residents"
+  },
+  {
+    "id": "hist-002",
+    "noticeId": "notice-001",
+    "noticeTitle": "Water Tank Cleaning — 12th July 2025",
+    "action": "published",
+    "actor": "Ramesh Kumar",
+    "occurredAt": "2025-07-01T10:30:00"
+  },
+  {
+    "id": "hist-003",
+    "noticeId": "draft-001",
+    "noticeTitle": "Monsoon Preparedness Checklist",
+    "action": "edited",
+    "actor": "Ramesh Kumar",
+    "occurredAt": "2025-07-01T17:00:00"
+  },
+  {
+    "id": "hist-004",
+    "noticeId": "sched-001",
+    "noticeTitle": "Ganesh Chaturthi Celebrations — Save the Date",
+    "action": "scheduled",
+    "actor": "Ramesh Kumar",
+    "occurredAt": "2025-07-01T14:00:00",
+    "detail": "Scheduled for 10 Jul 2025, 9:00 AM"
+  },
+  {
+    "id": "hist-005",
+    "noticeId": "archived-002",
+    "noticeTitle": "Annual General Meeting — March 2025",
+    "action": "archived",
+    "actor": "Ramesh Kumar",
+    "occurredAt": "2025-04-15T11:00:00"
+  },
+  {
+    "id": "hist-006",
+    "noticeId": "draft-002",
+    "noticeTitle": "Parking Slot Reallocation — Block A",
+    "action": "created",
+    "actor": "Ramesh Kumar",
+    "occurredAt": "2025-06-29T10:30:00"
+  }
+]

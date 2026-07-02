@@ -15,21 +15,18 @@ const portals = [
     title: "Resident",
     description: "Srinivas Malyala · Flat 110",
     icon: User,
-    phase: 4,
   },
   {
     href: routes.dashboard.inspector.root,
     title: "Inspector",
-    description: "Apartment Inspector · read-only",
+    description: "Apartment management · daily operations",
     icon: ClipboardList,
-    phase: 5,
   },
   {
     href: routes.dashboard.admin.root,
     title: "Admin",
-    description: "Apartment Administrator",
+    description: "Apartment configuration · build the society",
     icon: Shield,
-    phase: 6,
   },
 ];
 
@@ -42,8 +39,8 @@ export default function LoginPage() {
         <div className="text-center">
           <h1 className="text-2xl font-semibold tracking-tight">Portal access</h1>
           <p className="mt-2 text-sm text-muted-foreground">
-            Sign in as resident, inspector, or admin for {apartment.name}.
-            Full authentication arrives in Phase 2.
+            Sign in as resident, apartment inspector, or apartment admin for{" "}
+            {apartment.name}. Full authentication arrives in Phase 2.
           </p>
         </div>
 

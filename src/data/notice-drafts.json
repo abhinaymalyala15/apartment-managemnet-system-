@@ -1,0 +1,25 @@
+[
+  {
+    "id": "draft-001",
+    "apartmentId": "apt-sylvan-shelter",
+    "title": "Monsoon Preparedness Checklist",
+    "content": "Residents are advised to check terrace drains, seal window gaps, and store emergency candles. Society will inspect common area drainage by 15th July.",
+    "category": "general",
+    "priority": "medium",
+    "lastEditedAt": "2025-07-01T17:00:00",
+    "author": "Ramesh Kumar",
+    "audience": "all"
+  },
+  {
+    "id": "draft-002",
+    "apartmentId": "apt-sylvan-shelter",
+    "title": "Parking Slot Reallocation — Block A",
+    "content": "Due to new EV charging bays, parking slots 12–18 in Block A basement will be renumbered. Affected residents will receive individual letters.",
+    "category": "general",
+    "priority": "high",
+    "lastEditedAt": "2025-06-29T10:30:00",
+    "author": "Ramesh Kumar",
+    "audience": "block",
+    "blockIds": ["block-a"]
+  }
+]

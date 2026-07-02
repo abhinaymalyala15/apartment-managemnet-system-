@@ -1,0 +1,32 @@
+[
+  {
+    "id": "req-001",
+    "apartmentId": "apt-sylvan-shelter",
+    "flatId": "flat-110",
+    "title": "Water leakage in bathroom",
+    "description": "Tenant reported slow drip from ceiling fixture",
+    "status": "open",
+    "priority": "high",
+    "createdAt": "2025-07-02T09:30:00"
+  },
+  {
+    "id": "req-002",
+    "apartmentId": "apt-sylvan-shelter",
+    "flatId": "flat-305",
+    "title": "Duplicate maintenance receipt",
+    "description": "Owner needs copy of June payment receipt for records",
+    "status": "open",
+    "priority": "medium",
+    "createdAt": "2025-07-01T14:00:00"
+  },
+  {
+    "id": "req-003",
+    "apartmentId": "apt-sylvan-shelter",
+    "flatId": "flat-202",
+    "title": "Parking slot clarification",
+    "description": "Tenant asking which slot is assigned to Flat 202",
+    "status": "open",
+    "priority": "low",
+    "createdAt": "2025-07-02T11:15:00"
+  }
+]

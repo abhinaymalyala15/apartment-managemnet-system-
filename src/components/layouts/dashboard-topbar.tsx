@@ -11,20 +11,23 @@ interface DashboardTopbarProps {
   config: RoleNavConfig;
   title?: string;
   subtitle?: string;
+  centerSlot?: React.ReactNode;
 }
 
 export function DashboardTopbar({
   config,
   title,
   subtitle,
+  centerSlot,
 }: DashboardTopbarProps) {
   const apartment = getApartment();
   const isResident = config.role === "resident";
+  const isInspector = config.role === "inspector";
 
   return (
     <header className="sticky top-0 z-40 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
-      <div className="flex h-14 items-center gap-4 px-4 lg:px-6">
-        <div className="min-w-0 flex-1">
+      <div className="flex h-14 items-center gap-3 px-4 lg:gap-4 lg:px-6">
+        <div className={centerSlot ? "min-w-0 shrink-0 lg:w-48" : "min-w-0 flex-1"}>
           {title ? (
             <>
               <p className="truncate text-xs text-muted-foreground">
@@ -41,7 +44,7 @@ export function DashboardTopbar({
                 {config.userSubtitle} · {apartment.name}
               </p>
             </>
-          ) : config.role === "inspector" ? (
+          ) : isInspector ? (
             <>
               <p className="truncate text-sm font-semibold">{apartment.name}</p>
               <p className="truncate text-xs text-muted-foreground">
@@ -60,26 +63,35 @@ export function DashboardTopbar({
           )}
         </div>
 
-        {isResident ? (
-          <ButtonLink
-            href={`${routes.dashboard.resident.root}/notices`}
-            variant="outline"
-            size="sm"
-            className="shrink-0 gap-1.5"
-          >
-            <Bell className="h-4 w-4" />
-            <span className="hidden sm:inline">Announcements</span>
-          </ButtonLink>
-        ) : (
-          <Button
-            variant="outline"
-            size="icon"
-            className="relative h-9 w-9 shrink-0"
-            aria-label="Notifications"
-          >
-            <Bell className="h-4 w-4" />
-          </Button>
+        {centerSlot && (
+          <div className="hidden min-w-0 flex-1 sm:flex">{centerSlot}</div>
         )}
+
+        <div className="ml-auto flex shrink-0 items-center gap-2">
+          {isInspector && centerSlot && (
+            <div className="flex min-w-0 sm:hidden">{centerSlot}</div>
+          )}
+          {isResident ? (
+            <ButtonLink
+              href={`${routes.dashboard.resident.root}/notices`}
+              variant="outline"
+              size="sm"
+              className="shrink-0 gap-1.5"
+            >
+              <Bell className="h-4 w-4" />
+              <span className="hidden sm:inline">Announcements</span>
+            </ButtonLink>
+          ) : (
+            <Button
+              variant="outline"
+              size="icon"
+              className="relative h-9 w-9 shrink-0"
+              aria-label="Notifications"
+            >
+              <Bell className="h-4 w-4" />
+            </Button>
+          )}
+        </div>
       </div>
     </header>
   );

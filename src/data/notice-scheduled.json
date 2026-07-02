@@ -1,0 +1,15 @@
+[
+  {
+    "id": "sched-001",
+    "apartmentId": "apt-sylvan-shelter",
+    "title": "Ganesh Chaturthi Celebrations — Save the Date",
+    "content": "Community hall booking and cultural program details will be shared. Residents may volunteer for decoration committee.",
+    "category": "event",
+    "priority": "medium",
+    "lastEditedAt": "2025-07-01T14:00:00",
+    "author": "Ramesh Kumar",
+    "audience": "all",
+    "scheduledAt": "2025-07-10T09:00:00",
+    "status": "scheduled"
+  }
+]

@@ -1,28 +1,33 @@
 import { notFound } from "next/navigation";
-import { PageHeader } from "@/components/dashboard/page-header";
-import { FlatsTable } from "@/components/inspector/flats-table";
-import { getBlockById } from "@/lib/data";
+import {
+  AdminSubpageLayout,
+} from "@/components/inspector/admin-shell";
+import { BlockDashboard } from "@/components/inspector/block/block-dashboard";
+import { getBlockDashboardSummary } from "@/lib/explorer-data";
+import { getBlocks } from "@/lib/data";
 
 interface BlockPageProps {
   params: Promise<{ blockId: string }>;
 }
 
-export default async function InspectorBlockPage({ params }: BlockPageProps) {
-  const { blockId } = await params;
-  const block = getBlockById(blockId);
+export function generateStaticParams() {
+  return getBlocks().map((block) => ({ blockId: block.id }));
+}
 
-  if (!block) notFound();
+export default async function AdminBlockPage({ params }: BlockPageProps) {
+  const { blockId } = await params;
+  const summary = getBlockDashboardSummary(blockId);
+
+  if (!summary) notFound();
 
   return (
-    <>
-      <PageHeader
-        title={block.name}
-        subtitle={`${block.totalFlats} flats across ${block.floorCount} floors`}
-      />
-
-      <div className="flex-1 space-y-6 p-4 sm:p-6 lg:p-8">
-        <FlatsTable blockId={block.id} />
-      </div>
-    </>
+    <AdminSubpageLayout
+      title={`${summary.blockName} — Block Dashboard`}
+      description="Mini operations center for this tower — collection, follow-ups, and services."
+      backHref="/admin"
+      backLabel="Dashboard"
+    >
+      <BlockDashboard summary={summary} />
+    </AdminSubpageLayout>
   );
 }

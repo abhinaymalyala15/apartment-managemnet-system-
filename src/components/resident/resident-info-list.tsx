@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils";
 
 interface InfoItem {
   label: string;
-  value: string;
+  value: React.ReactNode;
 }
 
 interface ResidentInfoListProps {

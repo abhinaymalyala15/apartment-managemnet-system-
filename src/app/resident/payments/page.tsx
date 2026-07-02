@@ -1,26 +1,31 @@
 import { ResidentPageHeader } from "@/components/resident/resident-page-header";
 import { ResidentContent } from "@/components/resident/resident-content";
 import { ResidentStatusBanner } from "@/components/resident/resident-status-banner";
-import { PaymentHistoryList } from "@/components/resident/payment-history-list";
+import { FilterablePaymentList } from "@/components/resident/filterable-payment-list";
 import { ResidentSection } from "@/components/resident/resident-section";
 import { ResidentHelpCard } from "@/components/resident/resident-help-card";
-import { formatCurrency, getApartment } from "@/lib/data";
+import {
+  formatCurrency,
+  getApartment,
+  getCurrentYear,
+  getMonthlyMaintenanceCharge,
+  getPaidThisYearTotal,
+} from "@/lib/data";
 import { getResidentContext } from "@/lib/resident-context";
 import { IndianRupee, CalendarCheck } from "lucide-react";
 
 export default function ResidentPaymentsPage() {
   const apartment = getApartment();
-  const { payments } = getResidentContext();
-
-  const paidThisYear = payments
-    .filter((p) => p.status === "paid")
-    .reduce((sum, p) => sum + p.amount, 0);
+  const { payments, flat } = getResidentContext();
+  const monthlyCharge = getMonthlyMaintenanceCharge(flat);
+  const year = getCurrentYear();
+  const paidThisYear = getPaidThisYearTotal(payments);
 
   return (
     <>
       <ResidentPageHeader
-        title="Maintenance bills"
-        description="Your monthly society charges. View history and receipts here — online payment comes later."
+        title="My bills"
+        description="Monthly society charges, history, and receipts."
         showBack={false}
       />
 
@@ -28,22 +33,24 @@ export default function ResidentPaymentsPage() {
         <ResidentStatusBanner payments={payments} />
 
         <div className="grid gap-3 sm:grid-cols-2">
-          <div className="rounded-2xl border bg-gradient-to-br from-emerald-500/10 to-card p-4 shadow-sm">
-            <div className="flex items-center gap-2 text-emerald-700">
+          <div className="surface-card bg-gradient-to-br from-success to-card p-4">
+            <div className="flex items-center gap-2 text-success">
               <IndianRupee className="h-4 w-4" />
               <span className="text-sm font-medium">Monthly charge</span>
             </div>
-            <p className="mt-2 text-2xl font-bold">{formatCurrency(1300)}</p>
+            <p className="mt-2 text-2xl font-bold tabular-nums">
+              {formatCurrency(monthlyCharge)}
+            </p>
             <p className="mt-1 text-xs text-muted-foreground">
-              Due on the 5th of each month
+              Due on the 5th of each month · ₹2 × {flat.areaSqft} sq.ft
             </p>
           </div>
-          <div className="rounded-2xl border bg-gradient-to-br from-primary/10 to-card p-4 shadow-sm">
+          <div className="surface-card bg-gradient-to-br from-primary/10 to-card p-4">
             <div className="flex items-center gap-2 text-primary">
               <CalendarCheck className="h-4 w-4" />
-              <span className="text-sm font-medium">Paid in 2025</span>
+              <span className="text-sm font-medium">Paid in {year}</span>
             </div>
-            <p className="mt-2 text-2xl font-bold">
+            <p className="mt-2 text-2xl font-bold tabular-nums">
               {formatCurrency(paidThisYear)}
             </p>
             <p className="mt-1 text-xs text-muted-foreground">
@@ -52,8 +59,8 @@ export default function ResidentPaymentsPage() {
           </div>
         </div>
 
-        <ResidentSection title="Bill history">
-          <PaymentHistoryList payments={payments} />
+        <ResidentSection title="Payment history">
+          <FilterablePaymentList payments={payments} />
         </ResidentSection>
 
         <ResidentHelpCard apartment={apartment} />

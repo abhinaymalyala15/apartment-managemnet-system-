@@ -1,0 +1,12 @@
+{
+  "maintenanceRatePerSqft": 2,
+  "defaultFlatAreaSqft": 650,
+  "billingCycleDay": 1,
+  "lateFeePercent": 2,
+  "lateFeeGraceDays": 7,
+  "gstApplicable": false,
+  "gstPercent": 0,
+  "effectiveFrom": "2024-04-01",
+  "approvedBy": "AGM April 2024",
+  "notes": "Maintenance rate of ₹2/sq.ft approved unanimously. Applies to all occupied flats."
+}

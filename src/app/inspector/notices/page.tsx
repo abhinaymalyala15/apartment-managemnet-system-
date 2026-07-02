@@ -1,0 +1,5 @@
+import { SentNoticesWorkspace } from "@/components/inspector/communication/sent-notices-workspace";
+
+export default function NoticesPage() {
+  return <SentNoticesWorkspace />;
+}

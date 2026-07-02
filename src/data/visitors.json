@@ -1,0 +1,32 @@
+[
+  {
+    "id": "vis-001",
+    "apartmentId": "apt-sylvan-shelter",
+    "flatId": "flat-110",
+    "guestName": "Ravi Kumar",
+    "purpose": "Family visit",
+    "expectedDate": "2025-07-02",
+    "expectedTime": "14:00",
+    "status": "pending"
+  },
+  {
+    "id": "vis-002",
+    "apartmentId": "apt-sylvan-shelter",
+    "flatId": "flat-205",
+    "guestName": "Delivery — Amazon",
+    "purpose": "Package delivery",
+    "expectedDate": "2025-07-02",
+    "expectedTime": "16:30",
+    "status": "pending"
+  },
+  {
+    "id": "vis-003",
+    "apartmentId": "apt-sylvan-shelter",
+    "flatId": "flat-102",
+    "guestName": "Suresh Reddy",
+    "purpose": "Plumber",
+    "expectedDate": "2025-07-01",
+    "expectedTime": "11:00",
+    "status": "approved"
+  }
+]

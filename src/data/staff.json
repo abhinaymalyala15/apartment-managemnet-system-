@@ -1,0 +1,46 @@
+[
+  {
+    "id": "staff-office-manager",
+    "fullName": "Ravi Kumar",
+    "roleId": "office_manager",
+    "phone": "+91 98765 43220",
+    "email": "office@sylvanshelter.in",
+    "department": "Administration",
+    "blockIds": [],
+    "isActive": true,
+    "joinedAt": "2020-03-01"
+  },
+  {
+    "id": "staff-accountant",
+    "fullName": "Lakshmi Devi",
+    "roleId": "accountant",
+    "phone": "+91 98765 43221",
+    "email": "accounts@sylvanshelter.in",
+    "department": "Finance",
+    "blockIds": [],
+    "isActive": true,
+    "joinedAt": "2021-06-15"
+  },
+  {
+    "id": "staff-security",
+    "fullName": "Suresh Naidu",
+    "roleId": "security_supervisor",
+    "phone": "+91 96396 33718",
+    "email": "security@sylvanshelter.in",
+    "department": "Security",
+    "blockIds": ["block-a"],
+    "isActive": true,
+    "joinedAt": "2019-01-10"
+  },
+  {
+    "id": "staff-maintenance",
+    "fullName": "Venkat Rao",
+    "roleId": "maintenance_staff",
+    "phone": "+91 98765 43222",
+    "email": "maintenance@sylvanshelter.in",
+    "department": "Facilities",
+    "blockIds": ["block-a"],
+    "isActive": true,
+    "joinedAt": "2022-08-01"
+  }
+]

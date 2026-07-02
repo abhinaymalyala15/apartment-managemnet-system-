@@ -1,0 +1,37 @@
+[
+  {
+    "id": "note-101-1",
+    "flatId": "flat-101",
+    "author": "Office Staff",
+    "createdAt": "2025-06-20T10:00:00",
+    "content": "Resident requested payment extension until 10 July. Treasurer approved."
+  },
+  {
+    "id": "note-202-1",
+    "flatId": "flat-202",
+    "author": "Treasurer",
+    "createdAt": "2025-07-01T16:45:00",
+    "content": "Tenant promised payment by Friday. Follow-up scheduled for Monday."
+  },
+  {
+    "id": "note-110-1",
+    "flatId": "flat-110",
+    "author": "Office Staff",
+    "createdAt": "2025-07-02T09:00:00",
+    "content": "Senior citizen household — prefer phone calls over WhatsApp."
+  },
+  {
+    "id": "note-110-2",
+    "flatId": "flat-110",
+    "author": "Secretary",
+    "createdAt": "2025-06-15T14:30:00",
+    "content": "Medical emergency contact on file. Spouse listed as backup."
+  },
+  {
+    "id": "note-305-1",
+    "flatId": "flat-305",
+    "author": "Office Staff",
+    "createdAt": "2025-07-01T11:00:00",
+    "content": "Owner requested duplicate receipt for June before paying July bill."
+  }
+]

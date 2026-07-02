@@ -1,0 +1,42 @@
+[
+  {
+    "id": "adoc-lift-a-manual",
+    "assetId": "asset-lift-a",
+    "title": "Otis Gen2 Service Manual",
+    "category": "manual",
+    "uploadedAt": "2018-03-20",
+    "fileLabel": "lift-a-manual.pdf"
+  },
+  {
+    "id": "adoc-lift-a-amc",
+    "assetId": "asset-lift-a",
+    "title": "AMC Agreement 2024–25",
+    "category": "amc_agreement",
+    "uploadedAt": "2024-07-01",
+    "fileLabel": "otis-amc-2024.pdf"
+  },
+  {
+    "id": "adoc-water-cert",
+    "assetId": "asset-water-tank",
+    "title": "Water Quality Certificate — Apr 2025",
+    "category": "certificate",
+    "uploadedAt": "2025-04-12",
+    "fileLabel": "water-quality-apr2025.pdf"
+  },
+  {
+    "id": "adoc-fire-cert",
+    "assetId": "asset-fire-safety",
+    "title": "Fire NOC Renewal",
+    "category": "certificate",
+    "uploadedAt": "2024-08-15",
+    "fileLabel": "fire-noc-2024.pdf"
+  },
+  {
+    "id": "adoc-gen-report",
+    "assetId": "asset-generator",
+    "title": "DG Service Report — Jun 2025",
+    "category": "service_report",
+    "uploadedAt": "2025-06-08",
+    "fileLabel": "dg-service-jun2025.pdf"
+  }
+]

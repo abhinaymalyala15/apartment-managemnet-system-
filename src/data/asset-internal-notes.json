@@ -1,0 +1,16 @@
+[
+  {
+    "id": "anote-lift-a",
+    "assetId": "asset-lift-a",
+    "author": "Facility Manager",
+    "createdAt": "2025-07-01T11:00:00",
+    "content": "AMC renewal pending with Otis — follow up before next quarterly service."
+  },
+  {
+    "id": "anote-water",
+    "assetId": "asset-water-tank",
+    "author": "Office Staff",
+    "createdAt": "2025-06-28T09:30:00",
+    "content": "Residents notified about water shutdown on 12 Jul during tank cleaning."
+  }
+]

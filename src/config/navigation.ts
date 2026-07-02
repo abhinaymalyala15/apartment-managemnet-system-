@@ -6,11 +6,15 @@ import {
   Wallet,
   Bell,
   Wrench,
-  FileText,
   BarChart3,
   Settings,
   Home,
   User,
+  Clock,
+  MessageSquare,
+  UserCheck,
+  Layers,
+  FileText,
 } from "lucide-react";
 import { routes } from "./routes";
 import type { DashboardRole } from "./routes";
@@ -20,7 +24,6 @@ export interface NavItem {
   label: string;
   href: string;
   icon: LucideIcon;
-  /** Phase when this nav item will be implemented */
   phase?: number;
   disabled?: boolean;
 }
@@ -38,11 +41,6 @@ export interface RoleNavConfig {
   groups: NavGroup[];
 }
 
-/**
- * Navigation config per role.
- * Resident (Phase 4) and Inspector (Phase 5) modules are active.
- * Admin and Platform items remain disabled until their phases.
- */
 export const roleNavigation: Record<DashboardRole, RoleNavConfig> = {
   resident: {
     role: "resident",
@@ -51,22 +49,12 @@ export const roleNavigation: Record<DashboardRole, RoleNavConfig> = {
     userSubtitle: `Flat ${demoUsers.resident.flatNumber}`,
     groups: [
       {
-        label: "Menu",
+        label: "Home",
         items: [
           {
             label: "Home",
             href: routes.dashboard.resident.root,
             icon: LayoutDashboard,
-          },
-          {
-            label: "Maintenance bills",
-            href: `${routes.dashboard.resident.root}/payments`,
-            icon: Wallet,
-          },
-          {
-            label: "Announcements",
-            href: `${routes.dashboard.resident.root}/notices`,
-            icon: Bell,
           },
         ],
       },
@@ -84,12 +72,42 @@ export const roleNavigation: Record<DashboardRole, RoleNavConfig> = {
             icon: Users,
           },
           {
-            label: "Society visits",
+            label: "Activity timeline",
+            href: `${routes.dashboard.resident.root}/timeline`,
+            icon: Clock,
+          },
+        ],
+      },
+      {
+        label: "Society",
+        items: [
+          {
+            label: "Notices",
+            href: `${routes.dashboard.resident.root}/notices`,
+            icon: Bell,
+          },
+          {
+            label: "Work visits",
             href: `${routes.dashboard.resident.root}/services`,
             icon: Wrench,
           },
+        ],
+      },
+      {
+        label: "Money",
+        items: [
           {
-            label: "My account",
+            label: "My bills",
+            href: `${routes.dashboard.resident.root}/payments`,
+            icon: Wallet,
+          },
+        ],
+      },
+      {
+        label: "You",
+        items: [
+          {
+            label: "My details",
             href: `${routes.dashboard.resident.root}/profile`,
             icon: User,
           },
@@ -99,47 +117,57 @@ export const roleNavigation: Record<DashboardRole, RoleNavConfig> = {
   },
   inspector: {
     role: "inspector",
-    label: "Inspector",
+    label: "Apartment Inspector",
     userDisplayName: demoUsers.inspector.fullName,
     userSubtitle: "Sylvan Shelter Apartment",
     groups: [
       {
-        label: "Menu",
+        label: "",
         items: [
           {
             label: "Dashboard",
             href: routes.dashboard.inspector.root,
             icon: LayoutDashboard,
           },
-        ],
-      },
-      {
-        label: "Lookup",
-        items: [
           {
-            label: "All flats",
-            href: `${routes.dashboard.inspector.root}/flats`,
-            icon: Building2,
-          },
-          {
-            label: "Find people",
-            href: `${routes.dashboard.inspector.root}/residents`,
+            label: "Residents",
+            href: routes.dashboard.inspector.residents,
             icon: Users,
           },
-        ],
-      },
-      {
-        label: "Finance",
-        items: [
           {
-            label: "Unpaid bills",
-            href: `${routes.dashboard.inspector.root}/maintenance`,
+            label: "Maintenance",
+            href: routes.dashboard.inspector.maintenance.outstanding,
             icon: Wallet,
           },
           {
+            label: "Complaints",
+            href: routes.dashboard.inspector.complaints.open,
+            icon: MessageSquare,
+          },
+          {
+            label: "Visitors",
+            href: routes.dashboard.inspector.visitors.root,
+            icon: UserCheck,
+          },
+          {
+            label: "Notices",
+            href: routes.dashboard.inspector.notices.root,
+            icon: Bell,
+          },
+          {
+            label: "Services",
+            href: routes.dashboard.inspector.services.root,
+            icon: Wrench,
+          },
+          {
             label: "Reports",
-            href: `${routes.dashboard.inspector.root}/reports`,
+            href: routes.dashboard.inspector.reports.root,
             icon: BarChart3,
+          },
+          {
+            label: "Settings",
+            href: routes.dashboard.inspector.settings.root,
+            icon: Settings,
           },
         ],
       },
@@ -149,10 +177,10 @@ export const roleNavigation: Record<DashboardRole, RoleNavConfig> = {
     role: "admin",
     label: "Apartment Admin",
     userDisplayName: demoUsers.admin.fullName,
-    userSubtitle: "Sylvan Shelter Apartment",
+    userSubtitle: "Sylvan Shelter · Configuration",
     groups: [
       {
-        label: "Main",
+        label: "",
         items: [
           {
             label: "Dashboard",
@@ -160,58 +188,49 @@ export const roleNavigation: Record<DashboardRole, RoleNavConfig> = {
             icon: LayoutDashboard,
           },
           {
-            label: "Structure",
-            href: `${routes.dashboard.admin.root}/structure`,
+            label: "Apartment",
+            href: routes.dashboard.admin.apartment.profile,
             icon: Building2,
-            phase: 6,
-            disabled: true,
+          },
+          {
+            label: "Blocks",
+            href: routes.dashboard.admin.blocks.root,
+            icon: Layers,
+          },
+          {
+            label: "Flats",
+            href: routes.dashboard.admin.flats.root,
+            icon: Home,
           },
           {
             label: "Residents",
-            href: `${routes.dashboard.admin.root}/residents`,
+            href: routes.dashboard.admin.residents,
             icon: Users,
-            phase: 6,
-            disabled: true,
           },
           {
-            label: "Maintenance",
-            href: `${routes.dashboard.admin.root}/maintenance`,
+            label: "Billing Setup",
+            href: routes.dashboard.admin.billing.maintenance,
             icon: Wallet,
-            phase: 6,
-            disabled: true,
           },
           {
-            label: "Notices",
-            href: `${routes.dashboard.admin.root}/notices`,
-            icon: Bell,
-            phase: 6,
-            disabled: true,
+            label: "Services",
+            href: routes.dashboard.admin.services.assets,
+            icon: Wrench,
+          },
+          {
+            label: "Users",
+            href: routes.dashboard.admin.users.inspectors,
+            icon: User,
           },
           {
             label: "Documents",
-            href: `${routes.dashboard.admin.root}/documents`,
+            href: routes.dashboard.admin.documents,
             icon: FileText,
-            phase: 6,
-            disabled: true,
           },
           {
-            label: "Reports",
-            href: `${routes.dashboard.admin.root}/reports`,
-            icon: BarChart3,
-            phase: 6,
-            disabled: true,
-          },
-        ],
-      },
-      {
-        label: "Settings",
-        items: [
-          {
-            label: "Apartment Settings",
-            href: `${routes.dashboard.admin.root}/settings`,
+            label: "Settings",
+            href: routes.dashboard.admin.settings,
             icon: Settings,
-            phase: 6,
-            disabled: true,
           },
         ],
       },
@@ -221,43 +240,15 @@ export const roleNavigation: Record<DashboardRole, RoleNavConfig> = {
     role: "platform",
     label: "Platform Admin",
     userDisplayName: demoUsers.platform.fullName,
-    userSubtitle: "Platform operator",
+    userSubtitle: "ApartmentERP Platform",
     groups: [
       {
-        label: "Platform",
+        label: "",
         items: [
           {
             label: "Dashboard",
-            href: routes.dashboard.platform.root,
+            href: routes.dashboard.admin.root,
             icon: LayoutDashboard,
-          },
-          {
-            label: "Apartments",
-            href: `${routes.dashboard.platform.root}/apartments`,
-            icon: Building2,
-            phase: 7,
-            disabled: true,
-          },
-          {
-            label: "Users",
-            href: `${routes.dashboard.platform.root}/users`,
-            icon: Users,
-            phase: 7,
-            disabled: true,
-          },
-          {
-            label: "Subscriptions",
-            href: `${routes.dashboard.platform.root}/subscriptions`,
-            icon: Wallet,
-            phase: 7,
-            disabled: true,
-          },
-          {
-            label: "Reports",
-            href: `${routes.dashboard.platform.root}/reports`,
-            icon: BarChart3,
-            phase: 7,
-            disabled: true,
           },
         ],
       },

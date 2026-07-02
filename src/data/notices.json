@@ -42,7 +42,10 @@
     "content": "TSSPDCL has informed a planned power shutdown on 8th July 2025 from 10:00 AM to 4:00 PM for feeder maintenance in Dilsukhnagar. DG backup will be available for lifts and common areas.",
     "category": "emergency",
     "publishedAt": "2025-07-02",
-    "priority": "high"
+    "priority": "high",
+    "author": "Ramesh Kumar",
+    "audience": "all",
+    "isEmergency": true
   },
   {
     "id": "notice-006",

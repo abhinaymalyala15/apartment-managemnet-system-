@@ -22,6 +22,7 @@
 
 # misc
 .DS_Store
+Thumbs.db
 *.pem
 
 # debug
@@ -32,6 +33,8 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+!.env.example
+!backend/.env.example
 
 # vercel
 .vercel
@@ -39,3 +42,22 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# python backend (keep source, ignore virtualenv & caches)
+backend/.venv/
+backend/**/__pycache__/
+*.py[cod]
+backend/.pytest_cache/
+backend/*.egg-info/
+
+# IDE / editor
+.idea/
+.vscode/
+*.swp
+
+# local archives & one-off scripts
+/archive/
+/scripts/migrate-paths.mjs
+
+# cursor local (not needed on GitHub)
+.cursor/

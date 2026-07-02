@@ -11,9 +11,10 @@ import { ButtonLink } from "@/components/ui/button-link";
 
 interface DashboardSidebarProps {
   config: RoleNavConfig;
+  onNavigate?: () => void;
 }
 
-export function DashboardSidebar({ config }: DashboardSidebarProps) {
+export function DashboardSidebar({ config, onNavigate }: DashboardSidebarProps) {
   const pathname = usePathname();
 
   return (
@@ -30,12 +31,14 @@ export function DashboardSidebar({ config }: DashboardSidebarProps) {
         </div>
       </div>
 
-      <nav className="flex-1 space-y-6 overflow-y-auto p-4">
+      <nav className="flex-1 overflow-y-auto p-3">
         {config.groups.map((group) => (
-          <div key={group.label}>
-            <p className="mb-2 px-3 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
-              {group.label}
-            </p>
+          <div key={group.label || "main"}>
+            {group.label ? (
+              <p className="mb-2 px-3 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+                {group.label}
+              </p>
+            ) : null}
             <div className="space-y-0.5">
               {group.items.map((item) => {
                 const isActive =
@@ -65,6 +68,7 @@ export function DashboardSidebar({ config }: DashboardSidebarProps) {
                   <Link
                     key={item.href}
                     href={item.href}
+                    onClick={onNavigate}
                     className={cn(
                       "flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors",
                       isActive

@@ -1,0 +1,28 @@
+[
+  {
+    "id": "archived-001",
+    "apartmentId": "apt-sylvan-shelter",
+    "title": "Holi Celebration 2025 — Thank You",
+    "content": "Thank you to all residents who participated in the Holi celebration on 14th March. Photos will be shared on the notice board.",
+    "category": "event",
+    "publishedAt": "2025-03-10",
+    "priority": "low",
+    "author": "Ramesh Kumar",
+    "audience": "all",
+    "archivedAt": "2025-04-01",
+    "archivedBy": "Ramesh Kumar"
+  },
+  {
+    "id": "archived-002",
+    "apartmentId": "apt-sylvan-shelter",
+    "title": "Annual General Meeting — March 2025",
+    "content": "The AGM held on 16th March 2025 approved the maintenance budget for FY 2025–26. Minutes are available at the office.",
+    "category": "general",
+    "publishedAt": "2025-03-01",
+    "priority": "medium",
+    "author": "Treasurer",
+    "audience": "owners",
+    "archivedAt": "2025-04-15",
+    "archivedBy": "Ramesh Kumar"
+  }
+]

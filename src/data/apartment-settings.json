@@ -1,0 +1,63 @@
+{
+  "preferences": {
+    "timezone": "Asia/Kolkata",
+    "dateFormat": "DD MMM YYYY",
+    "currency": "INR",
+    "locale": "en-IN",
+    "fiscalYearStartMonth": 4,
+    "defaultNoticeChannel": "app",
+    "autoArchiveNoticesDays": 90
+  },
+  "roles": [
+    {
+      "id": "office_manager",
+      "label": "Office Manager",
+      "description": "Full society operations — billing, notices, resident records",
+      "scope": "apartment",
+      "permissions": ["finance", "communication", "residents", "settings"]
+    },
+    {
+      "id": "accountant",
+      "label": "Accountant",
+      "description": "Collections, receipts, statements, and financial reports",
+      "scope": "apartment",
+      "permissions": ["finance", "reports"]
+    },
+    {
+      "id": "committee_member",
+      "label": "Committee Member",
+      "description": "Read-only oversight with approval workflows",
+      "scope": "apartment",
+      "permissions": ["reports", "communication_read"]
+    },
+    {
+      "id": "security_supervisor",
+      "label": "Security Supervisor",
+      "description": "Gate, visitor, and emergency coordination",
+      "scope": "block",
+      "permissions": ["visitors", "emergency"]
+    },
+    {
+      "id": "maintenance_staff",
+      "label": "Maintenance Staff",
+      "description": "Asset services, work orders, and facility upkeep",
+      "scope": "block",
+      "permissions": ["assets", "work_orders"]
+    },
+    {
+      "id": "inspector",
+      "label": "Inspector",
+      "description": "Monitoring dashboard — occupancy, collection, society health",
+      "scope": "apartment",
+      "permissions": ["inspector_portal"]
+    }
+  ],
+  "integrations": [
+    { "id": "sms", "label": "SMS gateway", "description": "Bulk SMS for notices and reminders", "enabled": false, "phase": "Future" },
+    { "id": "whatsapp", "label": "WhatsApp Business", "description": "Two-way resident messaging", "enabled": false, "phase": "Future" },
+    { "id": "email", "label": "Email (SMTP)", "description": "Transactional and bulk email", "enabled": false, "phase": "Future" },
+    { "id": "push", "label": "Push notifications", "description": "Mobile app alerts", "enabled": false, "phase": "Future" },
+    { "id": "payment_gateway", "label": "Payment gateway", "description": "Online maintenance payments", "enabled": false, "phase": "Future" },
+    { "id": "accounting", "label": "Accounting export", "description": "Tally / Zoho Books sync", "enabled": false, "phase": "Future" }
+  ]
+}

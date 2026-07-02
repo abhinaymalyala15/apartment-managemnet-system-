@@ -1,9 +1,7 @@
-import { DashboardLayout } from "@/components/layouts/dashboard-layout";
-
-export default function PlatformLayout({
+export default function PlatformLegacyLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  return <DashboardLayout role="platform">{children}</DashboardLayout>;
+  return children;
 }

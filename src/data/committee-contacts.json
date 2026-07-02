@@ -1,0 +1,47 @@
+{
+  "emergency": [
+    {
+      "id": "emg-security",
+      "label": "Security desk",
+      "phone": "+91 96396 33718",
+      "hours": "24/7",
+      "role": "Gate & visitor management"
+    },
+    {
+      "id": "emg-fire",
+      "label": "Fire / medical emergency",
+      "phone": "112",
+      "hours": "24/7",
+      "role": "National emergency number"
+    }
+  ],
+  "committee": [
+    {
+      "id": "comm-president",
+      "name": "Srinivas Malyala",
+      "role": "RWA President",
+      "phone": "+91 96396 33716",
+      "email": "srinivas.malyala@gmail.com"
+    },
+    {
+      "id": "comm-secretary",
+      "name": "Rajesh Kumar",
+      "role": "Secretary",
+      "phone": "+91 98765 43211",
+      "email": "secretary@sylvanshelter.in"
+    },
+    {
+      "id": "comm-treasurer",
+      "name": "Priya Sharma",
+      "role": "Treasurer",
+      "phone": "+91 98765 43212",
+      "email": "treasurer@sylvanshelter.in"
+    }
+  ],
+  "office": {
+    "label": "Society office",
+    "phone": "+91 96396 33716",
+    "email": "abhinaymalyala15@gmail.com",
+    "hours": "Mon–Sat, 9:00 AM – 6:00 PM"
+  }
+}

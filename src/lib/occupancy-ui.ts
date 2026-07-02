@@ -33,3 +33,14 @@ export function getResidentTypeLabel(
   };
   return labels[status];
 }
+
+export function getResidentDirectoryLabel(
+  status: OccupancyStatus
+): "Owner" | "Rent" | "Vacant" {
+  const labels: Record<OccupancyStatus, "Owner" | "Rent" | "Vacant"> = {
+    owner_occupied: "Owner",
+    tenant_occupied: "Rent",
+    vacant: "Vacant",
+  };
+  return labels[status];
+}

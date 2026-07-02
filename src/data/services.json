@@ -98,6 +98,20 @@
     "frequency": "Bi-annual"
   },
   {
+    "id": "svc-today-001",
+    "apartmentId": "apt-sylvan-shelter",
+    "title": "Common Area Housekeeping",
+    "description": "Deep cleaning of lobby, corridors, and stairwells — Block A",
+    "serviceType": "Housekeeping",
+    "scheduledDate": "2025-07-02",
+    "scheduledTime": "8:00 AM - 12:00 PM",
+    "vendor": "CleanPro Facility Services",
+    "status": "scheduled",
+    "lastServiceDate": "2025-06-02",
+    "nextDueDate": "2025-07-02",
+    "frequency": "Monthly"
+  },
+  {
     "id": "svc-008",
     "apartmentId": "apt-sylvan-shelter",
     "flatId": "flat-110",

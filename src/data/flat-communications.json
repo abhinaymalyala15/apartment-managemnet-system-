@@ -1,0 +1,62 @@
+[
+  {
+    "id": "comm-202-1",
+    "flatId": "flat-202",
+    "channel": "phone",
+    "direction": "outbound",
+    "contactName": "Rajesh Kumar",
+    "summary": "Discussed overdue maintenance — tenant promised payment Friday",
+    "occurredAt": "2025-07-01T16:30:00",
+    "staffName": "Office Staff"
+  },
+  {
+    "id": "comm-202-2",
+    "flatId": "flat-202",
+    "channel": "whatsapp",
+    "direction": "outbound",
+    "contactName": "Rajesh Kumar",
+    "summary": "Sent payment reminder with UPI details",
+    "occurredAt": "2025-06-25T10:00:00",
+    "staffName": "Office Staff"
+  },
+  {
+    "id": "comm-101-1",
+    "flatId": "flat-101",
+    "channel": "phone",
+    "direction": "outbound",
+    "contactName": "Srinivas Naidu",
+    "summary": "No answer — left voicemail regarding June and July dues",
+    "occurredAt": "2025-06-28T11:00:00",
+    "staffName": "Treasurer"
+  },
+  {
+    "id": "comm-110-1",
+    "flatId": "flat-110",
+    "channel": "phone",
+    "direction": "inbound",
+    "contactName": "Srinivas Reddy",
+    "summary": "Called to update emergency contact number",
+    "occurredAt": "2025-07-02T09:15:00",
+    "staffName": "Office Staff"
+  },
+  {
+    "id": "comm-305-1",
+    "flatId": "flat-305",
+    "channel": "email",
+    "direction": "inbound",
+    "contactName": "Priya Sharma",
+    "summary": "Requested copy of June receipt via email",
+    "occurredAt": "2025-07-01T14:00:00",
+    "staffName": "Office Staff"
+  },
+  {
+    "id": "comm-503-1",
+    "flatId": "flat-503",
+    "channel": "whatsapp",
+    "direction": "inbound",
+    "contactName": "Vikram Reddy",
+    "summary": "Shared UPI payment screenshot — awaiting confirmation",
+    "occurredAt": "2025-07-02T10:30:00",
+    "staffName": "Office Staff"
+  }
+]

@@ -1,0 +1,67 @@
+[
+  {
+    "id": "fu-001",
+    "apartmentId": "apt-sylvan-shelter",
+    "flatId": "flat-202",
+    "amountPending": 2600,
+    "daysOverdue": 45,
+    "lastContactAt": "2025-07-01T16:30:00",
+    "lastContactMethod": "phone",
+    "lastOutcome": "Tenant promised payment by Friday, 4 Jul",
+    "nextFollowUpDate": "2025-07-07",
+    "assignedTo": "Office Staff",
+    "status": "promised"
+  },
+  {
+    "id": "fu-002",
+    "apartmentId": "apt-sylvan-shelter",
+    "flatId": "flat-101",
+    "amountPending": 2600,
+    "daysOverdue": 27,
+    "lastContactAt": "2025-06-28T11:00:00",
+    "lastContactMethod": "phone",
+    "lastOutcome": "No answer — left voicemail",
+    "nextFollowUpDate": "2025-07-03",
+    "assignedTo": "Treasurer",
+    "status": "open"
+  },
+  {
+    "id": "fu-003",
+    "apartmentId": "apt-sylvan-shelter",
+    "flatId": "flat-305",
+    "amountPending": 1300,
+    "daysOverdue": 12,
+    "lastContactAt": "2025-07-02T09:15:00",
+    "lastContactMethod": "whatsapp",
+    "lastOutcome": "Owner requested receipt copy before paying",
+    "nextFollowUpDate": "2025-07-04",
+    "assignedTo": "Office Staff",
+    "status": "open"
+  },
+  {
+    "id": "fu-004",
+    "apartmentId": "apt-sylvan-shelter",
+    "flatId": "flat-211",
+    "amountPending": 3900,
+    "daysOverdue": 62,
+    "lastContactAt": "2025-06-20T14:00:00",
+    "lastContactMethod": "in_person",
+    "lastOutcome": "Escalated to committee — partial payment discussed",
+    "nextFollowUpDate": "2025-07-10",
+    "assignedTo": "Secretary",
+    "status": "escalated"
+  },
+  {
+    "id": "fu-005",
+    "apartmentId": "apt-sylvan-shelter",
+    "flatId": "flat-503",
+    "amountPending": 1300,
+    "daysOverdue": 5,
+    "lastContactAt": "2025-07-02T10:30:00",
+    "lastContactMethod": "phone",
+    "lastOutcome": "Payment initiated via UPI — awaiting confirmation",
+    "nextFollowUpDate": "2025-07-03",
+    "assignedTo": "Office Staff",
+    "status": "promised"
+  }
+]

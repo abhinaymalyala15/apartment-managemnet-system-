@@ -7,5 +7,23 @@
     "floorCount": 5,
     "totalFlats": 55,
     "description": "Main residential block — 11 flats per floor across 5 floors."
+  },
+  {
+    "id": "block-b",
+    "apartmentId": "apt-sylvan-shelter",
+    "name": "Block B",
+    "code": "B",
+    "floorCount": 5,
+    "totalFlats": 0,
+    "description": "Tower B — planned expansion wing (demo placeholder for multi-block explorer)."
+  },
+  {
+    "id": "block-c",
+    "apartmentId": "apt-sylvan-shelter",
+    "name": "Block C",
+    "code": "C",
+    "floorCount": 5,
+    "totalFlats": 0,
+    "description": "Tower C — planned expansion wing (demo placeholder for multi-block explorer)."
   }
 ]

@@ -1,16 +1,23 @@
-import { InspectorSubpageLayout } from "@/components/inspector/inspector-subpage-layout";
-import { ResidentsTable } from "@/components/inspector/residents-table";
+import { Suspense } from "react";
 import { getResidentTableRows } from "@/lib/data";
+import { ResidentDirectoryPanel } from "@/components/inspector/residents/resident-directory-panel";
+import { Skeleton } from "@/components/ui/skeleton";
 
-export default function InspectorResidentsPage() {
+export default function AdminResidentsPage() {
   const rows = getResidentTableRows();
 
   return (
-    <InspectorSubpageLayout
-      title="Find people"
-      description="Search by resident name or flat number. For a flat-by-flat view with family and bills, use All flats in the sidebar."
-    >
-      <ResidentsTable rows={rows} />
-    </InspectorSubpageLayout>
+    <div className="page-stack pb-8">
+      <header>
+        <h1 className="text-2xl font-semibold tracking-tight">Residents</h1>
+        <p className="mt-1 text-sm text-muted-foreground">
+          Search households and open flat records.
+        </p>
+      </header>
+
+      <Suspense fallback={<Skeleton className="h-96 w-full" />}>
+        <ResidentDirectoryPanel rows={rows} />
+      </Suspense>
+    </div>
   );
 }

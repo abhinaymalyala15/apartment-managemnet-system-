@@ -1,0 +1,98 @@
+[
+  {
+    "id": "amc-lift-a",
+    "assetId": "asset-lift-a",
+    "vendorId": "vendor-otis",
+    "vendorName": "Otis Elevator Company",
+    "startDate": "2024-07-01",
+    "endDate": "2025-06-30",
+    "renewalReminderDays": 30,
+    "contactPerson": "Ravi Shankar",
+    "phone": "+91 40 2345 6789",
+    "email": "service.hyd@otis.com"
+  },
+  {
+    "id": "amc-lift-b",
+    "assetId": "asset-lift-b",
+    "vendorId": "vendor-otis",
+    "vendorName": "Otis Elevator Company",
+    "startDate": "2025-01-01",
+    "endDate": "2025-12-31",
+    "renewalReminderDays": 30,
+    "contactPerson": "Ravi Shankar",
+    "phone": "+91 40 2345 6789",
+    "email": "service.hyd@otis.com"
+  },
+  {
+    "id": "amc-water-tank",
+    "assetId": "asset-water-tank",
+    "vendorId": "vendor-aquapure",
+    "vendorName": "AquaPure Services",
+    "startDate": "2024-10-01",
+    "endDate": "2025-09-30",
+    "renewalReminderDays": 14,
+    "contactPerson": "Suresh Reddy",
+    "phone": "+91 40 9876 5432",
+    "email": "ops@aquapure.in"
+  },
+  {
+    "id": "amc-generator",
+    "assetId": "asset-generator",
+    "vendorId": "vendor-powergen",
+    "vendorName": "PowerGen Hyderabad",
+    "startDate": "2024-11-16",
+    "endDate": "2025-11-15",
+    "renewalReminderDays": 30,
+    "contactPerson": "Anil Kumar",
+    "phone": "+91 40 4567 8901",
+    "email": "support@powergenhyd.com"
+  },
+  {
+    "id": "amc-fire",
+    "assetId": "asset-fire-safety",
+    "vendorId": "vendor-safefire",
+    "vendorName": "SafeFire Solutions",
+    "startDate": "2024-09-01",
+    "endDate": "2025-08-31",
+    "renewalReminderDays": 30,
+    "contactPerson": "Priya Nair",
+    "phone": "+91 40 3210 9876",
+    "email": "inspections@safefire.in"
+  },
+  {
+    "id": "amc-cctv",
+    "assetId": "asset-cctv",
+    "vendorId": "vendor-secureview",
+    "vendorName": "SecureView Systems",
+    "startDate": "2025-04-01",
+    "endDate": "2026-03-31",
+    "renewalReminderDays": 30,
+    "contactPerson": "Mohammed Ali",
+    "phone": "+91 40 8765 4321",
+    "email": "amc@secureview.co.in"
+  },
+  {
+    "id": "amc-garden",
+    "assetId": "asset-garden",
+    "vendorId": "vendor-greenscape",
+    "vendorName": "GreenScape Hyderabad",
+    "startDate": "2024-11-01",
+    "endDate": "2025-10-31",
+    "renewalReminderDays": 14,
+    "contactPerson": "Lakshmi Devi",
+    "phone": "+91 40 6543 2109",
+    "email": "care@greenscape.in"
+  },
+  {
+    "id": "amc-solar",
+    "assetId": "asset-solar",
+    "vendorId": "vendor-sunpower",
+    "vendorName": "SunPower India",
+    "startDate": "2025-07-01",
+    "endDate": "2026-06-30",
+    "renewalReminderDays": 30,
+    "contactPerson": "Venkat Rao",
+    "phone": "+91 40 7890 1234",
+    "email": "service@sunpower.in"
+  }
+]

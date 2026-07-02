@@ -1,0 +1,88 @@
+[
+  {
+    "id": "doc-110-1",
+    "apartmentId": "apt-sylvan-shelter",
+    "flatId": "flat-110",
+    "title": "Sale deed — Flat 110",
+    "category": "ownership",
+    "uploadedAt": "2015-10-15",
+    "fileLabel": "sale-deed-flat-110.pdf"
+  },
+  {
+    "id": "doc-110-2",
+    "apartmentId": "apt-sylvan-shelter",
+    "flatId": "flat-110",
+    "title": "Latest maintenance receipt",
+    "category": "receipt",
+    "uploadedAt": "2025-06-05",
+    "fileLabel": "receipt-june-2025.pdf"
+  },
+  {
+    "id": "doc-101-1",
+    "apartmentId": "apt-sylvan-shelter",
+    "flatId": "flat-101",
+    "title": "Sale deed — Flat 101",
+    "category": "ownership",
+    "uploadedAt": "2016-02-20",
+    "fileLabel": "sale-deed-flat-101.pdf"
+  },
+  {
+    "id": "doc-101-2",
+    "apartmentId": "apt-sylvan-shelter",
+    "flatId": "flat-101",
+    "title": "Maintenance receipt — May 2025",
+    "category": "receipt",
+    "uploadedAt": "2025-05-08",
+    "fileLabel": "receipt-may-2025-flat-101.pdf"
+  },
+  {
+    "id": "doc-503-1",
+    "apartmentId": "apt-sylvan-shelter",
+    "flatId": "flat-503",
+    "title": "Rental agreement — Flat 503",
+    "category": "other",
+    "uploadedAt": "2025-06-28",
+    "fileLabel": "lease-flat-503.pdf"
+  },
+  {
+    "id": "doc-205-1",
+    "apartmentId": "apt-sylvan-shelter",
+    "flatId": "flat-205",
+    "title": "Maintenance receipt — June 2025",
+    "category": "receipt",
+    "uploadedAt": "2025-06-02",
+    "fileLabel": "receipt-june-2025-flat-205.pdf"
+  },
+  {
+    "id": "doc-society-1",
+    "apartmentId": "apt-sylvan-shelter",
+    "title": "RWA bylaws",
+    "category": "society",
+    "uploadedAt": "2016-03-01",
+    "fileLabel": "sylvan-shelter-bylaws.pdf"
+  },
+  {
+    "id": "doc-society-2",
+    "apartmentId": "apt-sylvan-shelter",
+    "title": "Parking rules",
+    "category": "society",
+    "uploadedAt": "2024-01-10",
+    "fileLabel": "parking-rules.pdf"
+  },
+  {
+    "id": "doc-society-3",
+    "apartmentId": "apt-sylvan-shelter",
+    "title": "AGM minutes — April 2024",
+    "category": "society",
+    "uploadedAt": "2024-04-22",
+    "fileLabel": "agm-minutes-apr-2024.pdf"
+  },
+  {
+    "id": "doc-society-4",
+    "apartmentId": "apt-sylvan-shelter",
+    "title": "Maintenance rate resolution",
+    "category": "society",
+    "uploadedAt": "2024-04-22",
+    "fileLabel": "maintenance-rate-resolution-2024.pdf"
+  }
+]
