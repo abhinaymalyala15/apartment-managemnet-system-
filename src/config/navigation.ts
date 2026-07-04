@@ -209,12 +209,12 @@ export const roleNavigation: Record<DashboardRole, RoleNavConfig> = {
           },
           {
             label: "Billing Setup",
-            href: routes.dashboard.admin.billing.maintenance,
+            href: routes.dashboard.admin.billing.flats,
             icon: Wallet,
           },
           {
             label: "Services",
-            href: routes.dashboard.admin.services.assets,
+            href: routes.dashboard.admin.services.root,
             icon: Wrench,
           },
           {

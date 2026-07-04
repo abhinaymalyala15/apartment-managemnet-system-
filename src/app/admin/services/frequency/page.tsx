@@ -1,5 +1,6 @@
-import { AdminServicesList } from "@/components/admin/services/admin-services-list";
+import { redirect } from "next/navigation";
+import { routes } from "@/config/routes";
 
-export default function AdminServicesFrequencyPage() {
-  return <AdminServicesList type="frequency" />;
+export default function AdminServicesFrequencyRedirectPage() {
+  redirect(routes.dashboard.admin.services.root);
 }

@@ -101,6 +101,33 @@ export interface Payment {
   period: string;
 }
 
+/** Admin billing setup — per-flat maintenance and optional other charges */
+export type FlatBillingStatus = "pending" | "paid" | "overdue";
+
+export interface FlatBillingAssignment {
+  flatId: string;
+  maintenanceAmount: number;
+  otherAmount: number;
+  maintenanceStatus: FlatBillingStatus;
+  /** Set when admin manually clears pending after offline payment */
+  manuallyClearedAt?: string;
+}
+
+export interface BillingSetupConfig {
+  otherColumnLabel: string;
+  billingPeriod: string;
+  ratePerSqft: number;
+  assignments: FlatBillingAssignment[];
+}
+
+export interface FlatBillingRow extends FlatBillingAssignment {
+  flatNumber: string;
+  blockName: string;
+  residentName: string | null;
+  areaSqft: number;
+  totalDue: number;
+}
+
 export interface Notice {
   id: string;
   apartmentId: string;
@@ -352,6 +379,31 @@ export interface FacilityVendor {
   email: string;
   contactPerson?: string;
   assetIds: string[];
+}
+
+/** Admin services setup — publish, edit, remove registry entries */
+export type ServicePublishStatus = "draft" | "published";
+
+export interface AdminServiceAsset extends CommunityAsset {
+  publishStatus: ServicePublishStatus;
+  serviceIntervalDays: number;
+}
+
+export interface AdminServiceVendor extends FacilityVendor {
+  publishStatus: ServicePublishStatus;
+}
+
+export interface AdminServiceAmc extends AssetAmcRecord {
+  publishStatus: ServicePublishStatus;
+}
+
+export interface AdminServiceFrequency {
+  assetId: string;
+  assetName: string;
+  assetType: AssetCategory;
+  serviceIntervalDays: number;
+  nextServiceDate?: string;
+  publishStatus: ServicePublishStatus;
 }
 
 export interface AssetServiceRecord {

@@ -20,7 +20,7 @@ export default function HomePage() {
       label: "Resident",
       description: "Bills, notices, flat details, and family",
       meta: "Demo: Srinivas Malyala · Flat 110",
-      href: routes.dashboard.resident.root,
+      href: routes.auth.resident.entry,
       icon: User,
       accent: "bg-blue-500/10 text-blue-700",
     },

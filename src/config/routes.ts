@@ -16,6 +16,13 @@ export const routes = {
     contact: "/contact",
     login: "/login",
   },
+  auth: {
+    resident: {
+      entry: "/login/resident",
+      login: "/login/resident/login",
+      register: "/login/resident/register",
+    },
+  },
   dashboard: {
     resident: {
       root: "/resident",
@@ -147,12 +154,14 @@ export const routes = {
       residents: "/admin/residents",
       billing: {
         root: "/admin/billing",
-        maintenance: "/admin/billing/maintenance",
-        corpus: "/admin/billing/corpus",
-        water: "/admin/billing/water",
-        lift: "/admin/billing/lift",
-        special: "/admin/billing/special",
-        penalty: "/admin/billing/penalty",
+        flats: "/admin/billing/flats",
+        rules: "/admin/billing/rules",
+        maintenance: "/admin/billing/flats",
+        corpus: "/admin/billing/flats",
+        water: "/admin/billing/flats",
+        lift: "/admin/billing/flats",
+        special: "/admin/billing/flats",
+        penalty: "/admin/billing/rules",
       },
       services: {
         root: "/admin/services",

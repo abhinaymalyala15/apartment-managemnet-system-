@@ -1,6 +1,7 @@
 import { ResidentPageHeader } from "@/components/resident/resident-page-header";
 import { ResidentContent } from "@/components/resident/resident-content";
 import { ResidentSummary } from "@/components/resident/resident-summary";
+import { ResidentLogoutButton } from "@/components/auth/resident/resident-logout-button";
 import { getResidentContext } from "@/lib/resident-context";
 
 export default function ResidentProfilePage() {
@@ -15,6 +16,7 @@ export default function ResidentProfilePage() {
       />
 
       <ResidentContent>
+        <ResidentLogoutButton />
         <ResidentSummary
           resident={ctx.resident}
           flat={ctx.flat}

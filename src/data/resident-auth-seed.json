@@ -1,0 +1,14 @@
+[
+  {
+    "id": "resident-srinivas",
+    "username": "srinivas",
+    "fullName": "Srinivas Malyala",
+    "email": "srinivas.malyala@gmail.com",
+    "mobile": "+91 96396 33716",
+    "password": "demo123",
+    "apartmentId": "apt-sylvan-shelter",
+    "flatId": "flat-110",
+    "flatNumber": "110",
+    "createdAt": "2024-01-01T00:00:00.000Z"
+  }
+]

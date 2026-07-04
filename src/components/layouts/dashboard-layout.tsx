@@ -6,6 +6,7 @@ import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/s
 import { DashboardSidebar } from "./dashboard-sidebar";
 import { DashboardTopbar } from "./dashboard-topbar";
 import type { DashboardRole } from "@/config/routes";
+import type { RoleNavConfig } from "@/config/navigation";
 import { roleNavigation } from "@/config/navigation";
 import { appConfig } from "@/config/app";
 import { cn } from "@/lib/utils";
@@ -15,11 +16,12 @@ interface DashboardLayoutProps {
   children: React.ReactNode;
   footer?: React.ReactNode;
   topbarSlot?: React.ReactNode;
+  navConfig?: RoleNavConfig;
 }
 
-export function DashboardLayout({ role, children, footer, topbarSlot }: DashboardLayoutProps) {
+export function DashboardLayout({ role, children, footer, topbarSlot, navConfig: navConfigProp }: DashboardLayoutProps) {
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
-  const navConfig = roleNavigation[role];
+  const navConfig = navConfigProp ?? roleNavigation[role];
   const isResident = role === "resident";
   const isInspector = role === "inspector";
   const isAdmin = role === "admin";

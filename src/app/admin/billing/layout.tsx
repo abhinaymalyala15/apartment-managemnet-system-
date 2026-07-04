@@ -11,7 +11,7 @@ export default function AdminBillingLayout({
     <div className="page-stack pb-8">
       <AdminPageHeader
         title="Billing setup"
-        description="Configure rates, funds, and penalty rules. Inspectors record collections."
+        description="Assign maintenance per flat, add other charges, and clear pending payments."
       />
       <AdminSectionNav
         items={ADMIN_BILLING_MODULES.map((s) => ({

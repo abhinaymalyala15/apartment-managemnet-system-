@@ -11,9 +11,9 @@ import { getApartment } from "@/lib/data";
 
 const portals = [
   {
-    href: routes.dashboard.resident.root,
+    href: routes.auth.resident.entry,
     title: "Resident",
-    description: "Srinivas Malyala · Flat 110",
+    description: "Sign in or create a resident account",
     icon: User,
   },
   {

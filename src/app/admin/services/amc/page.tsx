@@ -1,5 +1,6 @@
-import { AdminServicesList } from "@/components/admin/services/admin-services-list";
+import { redirect } from "next/navigation";
+import { routes } from "@/config/routes";
 
-export default function AdminServicesAmcPage() {
-  return <AdminServicesList type="amc" />;
+export default function AdminServicesAmcRedirectPage() {
+  redirect(routes.dashboard.admin.services.root);
 }

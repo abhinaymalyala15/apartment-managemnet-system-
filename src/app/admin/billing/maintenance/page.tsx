@@ -1,19 +1,6 @@
-import { SettingsProvider } from "@/components/inspector/settings/settings-provider";
-import { SettingsDrawers } from "@/components/inspector/settings/settings-drawers";
-import { MaintenanceConfigWorkspace } from "@/components/inspector/settings/maintenance-config-workspace";
-import {
-  getComputedMaintenancePreview,
-  getMaintenanceBillingConfig,
-} from "@/lib/settings-data";
+import { redirect } from "next/navigation";
+import { routes } from "@/config/routes";
 
-export default function AdminBillingMaintenancePage() {
-  return (
-    <SettingsProvider>
-      <MaintenanceConfigWorkspace
-        config={getMaintenanceBillingConfig()}
-        preview={getComputedMaintenancePreview()}
-      />
-      <SettingsDrawers />
-    </SettingsProvider>
-  );
+export default function AdminBillingMaintenanceRedirect() {
+  redirect(routes.dashboard.admin.billing.flats);
 }

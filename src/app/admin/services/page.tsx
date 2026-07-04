@@ -1,6 +1,5 @@
-import { redirect } from "next/navigation";
-import { routes } from "@/config/routes";
+import { AdminServicesRegistryWorkspace } from "@/components/admin/services/admin-services-registry-workspace";
 
-export default function AdminServicesIndexPage() {
-  redirect(routes.dashboard.admin.services.assets);
+export default function AdminServicesPage() {
+  return <AdminServicesRegistryWorkspace />;
 }
