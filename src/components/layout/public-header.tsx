@@ -12,7 +12,6 @@ import { cn } from "@/lib/utils";
 const publicNav = [
   { href: routes.public.home, label: "Home" },
   { href: routes.public.about, label: "About" },
-  { href: routes.public.features, label: "Features" },
   { href: routes.public.gallery, label: "Gallery" },
   { href: routes.public.contact, label: "Contact" },
 ];

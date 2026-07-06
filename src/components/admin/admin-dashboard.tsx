@@ -7,14 +7,23 @@ import {
   ClipboardList,
   AlertCircle,
   ChevronRight,
+  ArrowRight,
 } from "lucide-react";
 import { routes } from "@/config/routes";
 import type { AdminDashboardSummary } from "@/lib/admin-portal-data";
 import { Badge } from "@/components/ui/badge";
+import { AdminPageHeader } from "@/components/admin/admin-page-header";
+import {
+  AdminHintBanner,
+  AdminSectionLabel,
+  AdminStatCard,
+} from "@/components/admin/ui/admin-primitives";
 
 interface AdminDashboardProps {
   summary: AdminDashboardSummary;
 }
+
+const STAT_ACCENTS = ["primary", "primary", "success", "warning", "muted"] as const;
 
 export function AdminDashboard({ summary }: AdminDashboardProps) {
   const stats = [
@@ -27,60 +36,59 @@ export function AdminDashboard({ summary }: AdminDashboardProps) {
 
   return (
     <div className="page-stack pb-8">
-      <header>
-        <p className="text-sm font-medium text-muted-foreground">Apartment Admin</p>
-        <h1 className="page-title">{summary.apartmentName}</h1>
-        <p className="mt-1 text-sm text-muted-foreground">
-          Configure the apartment so inspectors can run daily operations.
-        </p>
-      </header>
+      <AdminPageHeader
+        title={summary.apartmentName}
+        description="Configure the apartment so inspectors can run daily operations."
+      />
 
-      <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
-        {stats.map(({ label, value, icon: Icon }) => (
-          <div key={label} className="surface-card p-4">
-            <div className="flex items-center gap-2 text-muted-foreground">
-              <Icon className="h-4 w-4" />
-              <span className="text-xs font-medium">{label}</span>
-            </div>
-            <p className="mt-2 text-2xl font-semibold tabular-nums">{value}</p>
-          </div>
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+        {stats.map(({ label, value, icon }, index) => (
+          <AdminStatCard
+            key={label}
+            label={label}
+            value={value}
+            icon={icon}
+            accent={STAT_ACCENTS[index]}
+          />
         ))}
       </div>
 
       {summary.pendingTasks.length > 0 && (
-        <div className="surface-card overflow-hidden">
-          <div className="flex items-center justify-between border-b px-4 py-3 sm:px-5">
-            <div className="flex items-center gap-2">
-              <h2 className="font-semibold">Pending configuration</h2>
-              <Badge variant="secondary">{summary.pendingConfigCount}</Badge>
-            </div>
+        <section className="space-y-4">
+          <div className="flex items-center gap-2">
+            <AdminSectionLabel>Pending configuration</AdminSectionLabel>
+            <Badge className="bg-amber-500/15 text-[10px] font-bold text-amber-700 hover:bg-amber-500/15">
+              {summary.pendingConfigCount}
+            </Badge>
           </div>
-          <ul className="divide-y">
+          <div className="grid gap-4 sm:grid-cols-2">
             {summary.pendingTasks.map((task) => (
-              <li key={task.id}>
-                <Link
-                  href={task.href}
-                  className="flex items-center justify-between gap-4 px-4 py-3.5 transition-colors hover:bg-muted/50 sm:px-5"
-                >
-                  <div className="flex items-center gap-3">
-                    <AlertCircle className="h-4 w-4 shrink-0 text-amber-600" />
-                    <span className="text-sm font-medium">{task.label}</span>
-                  </div>
-                  <ChevronRight className="h-4 w-4 shrink-0 text-muted-foreground" />
-                </Link>
-              </li>
+              <Link key={task.id} href={task.href} className="admin-action-card group">
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-amber-400/20 to-amber-500/10">
+                  <AlertCircle className="h-6 w-6 text-amber-600" />
+                </div>
+                <div className="min-w-0 flex-1">
+                  <p className="font-semibold leading-snug text-slate-900">{task.label}</p>
+                  <p className="mt-0.5 text-xs text-slate-500">Requires setup</p>
+                </div>
+                <ChevronRight className="h-5 w-5 shrink-0 text-slate-400 transition-transform group-hover:translate-x-0.5 group-hover:text-primary" />
+              </Link>
             ))}
-          </ul>
-        </div>
+          </div>
+        </section>
       )}
 
-      <div className="rounded-xl border border-dashed bg-muted/20 px-4 py-3 text-sm text-muted-foreground">
+      <AdminHintBanner>
         Payments, complaints, visitors, and reports are handled in the{" "}
-        <Link href={routes.dashboard.inspector.root} className="font-medium text-primary hover:underline">
+        <Link
+          href={routes.dashboard.inspector.root}
+          className="inline-flex items-center gap-1 font-semibold text-primary hover:underline"
+        >
           Inspector Portal
+          <ArrowRight className="h-3.5 w-3.5" />
         </Link>
         .
-      </div>
+      </AdminHintBanner>
     </div>
   );
 }

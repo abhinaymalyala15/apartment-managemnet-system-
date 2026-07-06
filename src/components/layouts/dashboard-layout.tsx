@@ -37,20 +37,43 @@ export function DashboardLayout({ role, children, footer, topbarSlot, navConfig:
             : "bg-[oklch(0.97_0.006_260)]"
       )}
     >
-      <aside className="hidden w-60 shrink-0 flex-col border-r bg-card lg:flex">
+      <aside
+        className={cn(
+          "hidden shrink-0 flex-col lg:flex",
+          isAdmin
+            ? "w-64 border-r border-slate-800 bg-slate-900 text-slate-100"
+            : "w-60 border-r bg-card"
+        )}
+      >
         <DashboardSidebar config={navConfig} />
       </aside>
 
       <div className="flex min-w-0 flex-1 flex-col">
-        <div className="flex h-14 items-center gap-3 border-b bg-background px-4 lg:hidden">
+        <div
+          className={cn(
+            "flex h-14 items-center gap-3 border-b px-4 lg:hidden",
+            isAdmin ? "border-slate-800 bg-slate-900 text-white" : "bg-background"
+          )}
+        >
           <Sheet open={mobileNavOpen} onOpenChange={setMobileNavOpen}>
             <SheetTrigger
-              className="inline-flex size-10 items-center justify-center rounded-lg border border-border bg-background hover:bg-muted"
+              className={cn(
+                "inline-flex size-10 items-center justify-center rounded-lg border hover:bg-muted",
+                isAdmin
+                  ? "border-slate-700 bg-slate-800 text-white hover:bg-slate-700"
+                  : "border-border bg-background"
+              )}
               aria-label="Open menu"
             >
               <Menu className="h-5 w-5" />
             </SheetTrigger>
-            <SheetContent side="left" className="w-[min(100vw,15rem)] p-0">
+            <SheetContent
+              side="left"
+              className={cn(
+                "w-[min(100vw,16rem)] p-0",
+                isAdmin && "border-slate-800 bg-slate-900 text-slate-100"
+              )}
+            >
               <SheetTitle className="sr-only">Navigation</SheetTitle>
               <div className="flex h-full flex-col">
                 <DashboardSidebar
@@ -89,8 +112,9 @@ export function DashboardLayout({ role, children, footer, topbarSlot, navConfig:
         <main
           className={cn(
             "flex min-h-0 flex-1 flex-col overflow-x-hidden",
-            isAdmin && "portal-content",
-            footer && "pb-[calc(4.25rem+env(safe-area-inset-bottom))] lg:pb-0"
+            isAdmin && "admin-portal-main portal-content",
+            !isAdmin && footer && "pb-[calc(4.25rem+env(safe-area-inset-bottom))] lg:pb-0",
+            isAdmin && footer && "pb-[calc(4.25rem+env(safe-area-inset-bottom))] lg:pb-0"
           )}
         >
           {children}

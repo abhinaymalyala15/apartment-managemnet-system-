@@ -18,6 +18,8 @@ import {
 } from "@/lib/admin-services-setup-data";
 import { formatDate } from "@/lib/data";
 import type { AdminServiceAsset } from "@/types";
+import { AdminStatCard, AdminWorkspaceIntro } from "@/components/admin/ui/admin-primitives";
+import { Box, CheckCircle2, Clock, FileEdit, Wrench } from "lucide-react";
 
 export function AdminServicesRegistryWorkspace() {
   const {
@@ -74,24 +76,32 @@ export function AdminServicesRegistryWorkspace() {
 
   return (
     <div className="space-y-6">
-      <p className="text-sm text-muted-foreground">
+      <AdminWorkspaceIntro icon={Wrench} title="Community asset registry">
         One registry for every society asset — vendor, service schedule, and AMC expiry
         live on each row. Publish when ready for inspectors; no separate vendor or AMC
         screens needed.
-      </p>
+      </AdminWorkspaceIntro>
 
-      <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-        {[
-          ["Total assets", assetSummary.total],
-          ["Published", assetSummary.published],
-          ["Drafts", assetSummary.drafts],
-          ["Due soon", assetSummary.dueSoon],
-        ].map(([label, value]) => (
-          <div key={label} className="surface-card p-4">
-            <p className="text-xs text-muted-foreground">{label}</p>
-            <p className="mt-1 text-xl font-semibold tabular-nums">{value}</p>
-          </div>
-        ))}
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <AdminStatCard label="Total assets" value={assetSummary.total} icon={Box} />
+        <AdminStatCard
+          label="Published"
+          value={assetSummary.published}
+          icon={CheckCircle2}
+          accent="success"
+        />
+        <AdminStatCard
+          label="Drafts"
+          value={assetSummary.drafts}
+          icon={FileEdit}
+          accent="muted"
+        />
+        <AdminStatCard
+          label="Due soon"
+          value={assetSummary.dueSoon}
+          icon={Clock}
+          accent="warning"
+        />
       </div>
 
       <div className="flex flex-wrap gap-2">
@@ -155,11 +165,15 @@ export function AdminServicesRegistryWorkspace() {
         resultCount={{ shown: filtered.length, total: assets.length }}
       />
 
-      <div className="surface-card overflow-hidden">
+      <div className="admin-panel overflow-hidden">
+        <div className="border-b border-slate-200 bg-slate-50/90 px-5 py-4">
+          <h2 className="text-base font-semibold text-slate-900">Asset registry</h2>
+          <p className="text-xs text-slate-500">{filtered.length} of {assets.length} assets</p>
+        </div>
         <div className="hidden overflow-x-auto lg:block">
           <table className="w-full min-w-[960px] text-sm">
             <thead>
-              <tr className="border-b bg-muted/40 text-left text-xs text-muted-foreground">
+              <tr className="admin-table-head">
                 <th className="px-4 py-3 font-medium">Asset</th>
                 <th className="px-4 py-3 font-medium">Location</th>
                 <th className="px-4 py-3 font-medium">Vendor</th>
@@ -173,7 +187,7 @@ export function AdminServicesRegistryWorkspace() {
             </thead>
             <tbody className="divide-y">
               {filtered.map((asset) => (
-                <tr key={asset.id} className="hover:bg-muted/20">
+                <tr key={asset.id} className="admin-table-row">
                   <td className="px-4 py-3">
                     <p className="font-medium">{asset.name}</p>
                     <p className="text-xs text-muted-foreground">

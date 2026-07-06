@@ -18,7 +18,7 @@ export function AdminSectionNav({ items }: AdminSectionNavProps) {
   const pathname = usePathname();
 
   return (
-    <nav className="scroll-tabs">
+    <nav className="inline-flex w-full max-w-full gap-1 overflow-x-auto rounded-2xl border border-slate-200/80 bg-slate-100/80 p-1.5 shadow-inner">
       {items.map((tab) => {
         const active = pathname === tab.href || pathname.startsWith(`${tab.href}/`);
 
@@ -27,10 +27,10 @@ export function AdminSectionNav({ items }: AdminSectionNavProps) {
             key={tab.id}
             href={tab.href}
             className={cn(
-              "shrink-0 border-b-2 px-3 py-2 text-sm font-medium transition-colors",
+              "shrink-0 rounded-xl px-4 py-2.5 text-sm font-semibold transition-all",
               active
-                ? "border-primary text-foreground"
-                : "border-transparent text-muted-foreground hover:text-foreground"
+                ? "bg-white text-slate-900 shadow-sm ring-1 ring-slate-200/80"
+                : "text-slate-500 hover:bg-white/60 hover:text-slate-800"
             )}
           >
             {tab.label}

@@ -3,6 +3,8 @@
 import { useMemo, useState } from "react";
 import {
   CheckCircle2,
+  Calendar,
+  ClipboardList,
   IndianRupee,
   Pencil,
   RotateCcw,
@@ -17,6 +19,12 @@ import { useBillingSetup } from "@/components/admin/billing/billing-setup-provid
 import { formatCurrency } from "@/lib/billing-setup-data";
 import type { FlatBillingRow, FlatBillingStatus } from "@/types";
 import { cn } from "@/lib/utils";
+import {
+  AdminBulkCard,
+  AdminPanel,
+  AdminStatCard,
+  AdminWorkspaceIntro,
+} from "@/components/admin/ui/admin-primitives";
 
 const statusConfig: Record<
   FlatBillingStatus,
@@ -72,79 +80,74 @@ export function AdminFlatBillingWorkspace() {
 
   return (
     <div className="space-y-6">
-      <p className="text-sm text-muted-foreground">
+      <AdminWorkspaceIntro icon={ClipboardList} title="Flat billing workspace">
         Assign maintenance for every flat, add optional external charges under{" "}
-        <span className="font-medium text-foreground">{otherColumnLabel}</span>, and
+        <span className="font-semibold text-slate-800">{otherColumnLabel}</span>, and
         manually clear pending when a resident pays offline. Inspectors record day-to-day
         collections in the Maintenance module.
-      </p>
+      </AdminWorkspaceIntro>
 
-      <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-        {[
-          ["Flats", summary.flatCount],
-          ["Pending", summary.pendingCount],
-          ["Paid / cleared", summary.paidCount],
-          ["Period", billingPeriod],
-        ].map(([label, value]) => (
-          <div key={label} className="surface-card p-4">
-            <p className="text-xs text-muted-foreground">{label}</p>
-            <p className="mt-1 text-xl font-semibold tabular-nums">{value}</p>
-          </div>
-        ))}
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <AdminStatCard label="Flats" value={summary.flatCount} icon={ClipboardList} />
+        <AdminStatCard
+          label="Pending"
+          value={summary.pendingCount}
+          icon={IndianRupee}
+          accent="warning"
+        />
+        <AdminStatCard
+          label="Paid / cleared"
+          value={summary.paidCount}
+          icon={CheckCircle2}
+          accent="success"
+        />
+        <AdminStatCard label="Period" value={billingPeriod} icon={Calendar} accent="muted" />
       </div>
 
-      <section className="surface-card p-5">
-        <h2 className="font-semibold">Bulk actions</h2>
-        <p className="mt-1 text-sm text-muted-foreground">
-          Apply rates across all flats, or push an external charge to everyone at once.
-        </p>
-
-        <div className="mt-4 grid gap-4 lg:grid-cols-2">
-          <div className="rounded-xl border bg-muted/20 p-4">
-            <div className="flex items-center gap-2 text-sm font-medium">
-              <IndianRupee className="h-4 w-4 text-primary" />
-              Maintenance rate
-            </div>
-            <div className="mt-3 flex flex-col gap-2 sm:flex-row sm:items-end">
+      <AdminPanel
+        title="Bulk actions"
+        description="Apply rates across all flats, or push an external charge to everyone at once."
+        tone="primary"
+        flush
+      >
+        <div className="grid gap-4 p-5 lg:grid-cols-2">
+          <AdminBulkCard icon={IndianRupee} title="Maintenance rate" tone="blue">
+            <div className="flex flex-col gap-2 sm:flex-row sm:items-end">
               <label className="min-w-0 flex-1 space-y-1">
-                <span className="text-xs text-muted-foreground">₹ per sq.ft</span>
+                <span className="text-xs font-medium text-slate-500">₹ per sq.ft</span>
                 <Input
                   type="number"
                   min={0}
                   step={0.5}
                   value={ratePerSqft}
                   onChange={(e) => setRatePerSqft(Number(e.target.value))}
-                  className="tabular-nums"
+                  className="tabular-nums bg-white"
                 />
               </label>
-              <Button size="sm" className="w-full sm:w-auto" onClick={applyRateToAllFlats}>
+              <Button size="sm" className="w-full shadow-md sm:w-auto" onClick={applyRateToAllFlats}>
                 <Sparkles className="mr-1.5 h-4 w-4" />
                 Apply to all flats
               </Button>
             </div>
-          </div>
+          </AdminBulkCard>
 
-          <div className="rounded-xl border bg-muted/20 p-4">
-            <div className="flex items-center gap-2 text-sm font-medium">
-              <Users className="h-4 w-4 text-primary" />
-              {otherColumnLabel} — add to all
-            </div>
-            <div className="mt-3 flex flex-col gap-2 sm:flex-row sm:items-end">
+          <AdminBulkCard icon={Users} title={`${otherColumnLabel} — add to all`} tone="violet">
+            <div className="flex flex-col gap-2 sm:flex-row sm:items-end">
               <label className="min-w-0 flex-1 space-y-1">
-                <span className="text-xs text-muted-foreground">Amount (₹)</span>
+                <span className="text-xs font-medium text-slate-500">Amount (₹)</span>
                 <Input
                   type="number"
                   min={0}
                   placeholder="e.g. 350 for water bill"
                   value={bulkOther}
                   onChange={(e) => setBulkOther(e.target.value)}
-                  className="tabular-nums"
+                  className="tabular-nums bg-white"
                 />
               </label>
               <Button
                 size="sm"
                 variant="outline"
-                className="w-full sm:w-auto"
+                className="w-full border-violet-200 bg-white sm:w-auto"
                 onClick={() => {
                   const amount = Number(bulkOther);
                   if (!Number.isNaN(amount)) applyOtherToAllFlats(amount);
@@ -153,18 +156,18 @@ export function AdminFlatBillingWorkspace() {
                 Add to all flats
               </Button>
             </div>
-          </div>
+          </AdminBulkCard>
         </div>
 
-        <div className="mt-4 flex flex-col gap-2 sm:flex-row sm:items-center">
-          <label className="text-sm text-muted-foreground">Billing period</label>
+        <div className="flex flex-col gap-2 border-t border-slate-100 px-5 py-4 sm:flex-row sm:items-center">
+          <label className="text-sm font-medium text-slate-600">Billing period</label>
           <Input
             value={billingPeriod}
             onChange={(e) => setBillingPeriod(e.target.value)}
-            className="max-w-xs"
+            className="max-w-xs bg-white"
           />
         </div>
-      </section>
+      </AdminPanel>
 
       <ListToolbar
         search={search}
@@ -187,9 +190,12 @@ export function AdminFlatBillingWorkspace() {
         resultCount={{ shown: filtered.length, total: rows.length }}
       />
 
-      <div className="surface-card overflow-hidden">
-        <div className="flex flex-wrap items-center justify-between gap-3 border-b px-4 py-3 sm:px-5">
-          <h2 className="font-semibold">Flat billing</h2>
+      <div className="admin-panel overflow-hidden">
+        <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-200 bg-slate-50/90 px-5 py-4">
+          <div>
+            <h2 className="text-base font-semibold text-slate-900">Flat billing</h2>
+            <p className="text-xs text-slate-500">{filtered.length} of {rows.length} flats shown</p>
+          </div>
           {editingLabel ? (
             <div className="flex w-full flex-col gap-2 sm:w-auto sm:flex-row sm:items-center">
               <Input
@@ -232,7 +238,7 @@ export function AdminFlatBillingWorkspace() {
         <div className="hidden overflow-x-auto lg:block">
           <table className="w-full min-w-[880px] text-sm">
             <thead>
-              <tr className="border-b bg-muted/40 text-left text-xs text-muted-foreground">
+              <tr className="admin-table-head">
                 <th className="px-4 py-3 font-medium">Flat</th>
                 <th className="px-4 py-3 font-medium">Resident</th>
                 <th className="px-4 py-3 font-medium">Maintenance (₹)</th>
@@ -300,7 +306,7 @@ function FlatBillingTableRow({
   const status = statusConfig[row.maintenanceStatus];
 
   return (
-    <tr className="hover:bg-muted/20">
+    <tr className="admin-table-row">
       <td className="px-4 py-3">
         <p className="font-semibold tabular-nums">{row.flatNumber}</p>
         <p className="text-xs text-muted-foreground">
@@ -322,7 +328,9 @@ function FlatBillingTableRow({
           ariaLabel={`${otherColumnLabel} for flat ${row.flatNumber}`}
         />
       </td>
-      <td className="px-4 py-3 font-medium tabular-nums">{formatCurrency(row.totalDue)}</td>
+      <td className="px-4 py-3 font-semibold tabular-nums text-emerald-600 dark:text-emerald-400">
+        {formatCurrency(row.totalDue)}
+      </td>
       <td className="px-4 py-3">
         <Badge variant={status.variant}>{status.label}</Badge>
         {row.manuallyClearedAt && (
@@ -358,7 +366,7 @@ function FlatBillingMobileCard({
   const status = statusConfig[row.maintenanceStatus];
 
   return (
-    <li className="space-y-3 px-4 py-4">
+    <li className="m-4 space-y-3 rounded-2xl border border-slate-200/80 bg-white p-4 shadow-sm last:mb-4">
       <div className="flex items-start justify-between gap-2">
         <div>
           <p className="font-semibold tabular-nums">Flat {row.flatNumber}</p>

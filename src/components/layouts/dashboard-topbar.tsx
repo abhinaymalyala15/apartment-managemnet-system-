@@ -6,6 +6,7 @@ import { ButtonLink } from "@/components/ui/button-link";
 import { getApartment } from "@/lib/data";
 import type { RoleNavConfig } from "@/config/navigation";
 import { routes } from "@/config/routes";
+import { cn } from "@/lib/utils";
 
 interface DashboardTopbarProps {
   config: RoleNavConfig;
@@ -23,9 +24,23 @@ export function DashboardTopbar({
   const apartment = getApartment();
   const isResident = config.role === "resident";
   const isInspector = config.role === "inspector";
+  const isAdmin = config.role === "admin";
 
   return (
-    <header className="sticky top-0 z-40 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
+    <header
+      className={cn(
+        "sticky top-0 z-40 border-b backdrop-blur supports-[backdrop-filter]:bg-background/80",
+        isAdmin
+          ? "border-slate-200/80 bg-white/95 shadow-sm"
+          : "bg-background/95"
+      )}
+    >
+      {isAdmin && (
+        <div
+          className="hidden h-1 bg-gradient-to-r from-primary via-violet-500 to-primary/60 lg:block"
+          aria-hidden
+        />
+      )}
       <div className="flex h-14 items-center gap-3 px-4 lg:gap-4 lg:px-6">
         <div className={centerSlot ? "min-w-0 shrink-0 lg:w-48" : "min-w-0 flex-1"}>
           {title ? (
@@ -53,11 +68,11 @@ export function DashboardTopbar({
             </>
           ) : (
             <>
-              <p className="truncate text-sm font-semibold">{config.label}</p>
-              {subtitle && (
-                <p className="truncate text-xs text-muted-foreground">
-                  {subtitle}
-                </p>
+              <p className="truncate text-sm font-bold text-slate-900">{config.label}</p>
+              {subtitle ? (
+                <p className="truncate text-xs text-slate-500">{subtitle}</p>
+              ) : (
+                <p className="truncate text-xs text-slate-500">{apartment.name}</p>
               )}
             </>
           )}

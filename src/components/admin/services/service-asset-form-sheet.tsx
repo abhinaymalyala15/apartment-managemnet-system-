@@ -75,7 +75,7 @@ export function ServiceAssetFormSheet({
     <Sheet open={open} onOpenChange={onOpenChange}>
       <SheetContent side="right" className="w-full overflow-y-auto sm:max-w-md">
         <SheetTitle>{asset ? "Edit asset" : "Add asset"}</SheetTitle>
-        <form onSubmit={handleSubmit} className="mt-6 space-y-4">
+        <form onSubmit={handleSubmit} className="mt-6 space-y-5">
           <Field label="Asset name">
             <Input
               value={form.name}

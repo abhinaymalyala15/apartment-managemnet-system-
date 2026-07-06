@@ -2,6 +2,10 @@
 
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import {
+  AdminPanel,
+  AdminSectionLabel,
+} from "@/components/admin/ui/admin-primitives";
 import type { AdminRoleDefinition, IntegrationDef, SystemPreferences } from "@/types";
 
 interface AdminSettingsWorkspaceProps {
@@ -16,16 +20,16 @@ export function AdminSettingsWorkspace({
   roles,
 }: AdminSettingsWorkspaceProps) {
   return (
-    <div className="space-y-8">
-      <section className="space-y-4">
+    <div className="space-y-6">
+      <section className="space-y-3">
         <div className="flex flex-wrap items-start justify-between gap-4">
           <p className="text-sm text-muted-foreground">
             System-wide preferences — theme, language, financial year, and notification channels.
           </p>
           <Button size="sm">Edit preferences</Button>
         </div>
-        <div className="surface-card p-5">
-          <dl className="grid gap-4 sm:grid-cols-2">
+        <AdminPanel>
+          <dl className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {[
               ["Timezone", preferences.timezone],
               ["Date format", preferences.dateFormat],
@@ -34,18 +38,21 @@ export function AdminSettingsWorkspace({
               ["Financial year starts", `Month ${preferences.fiscalYearStartMonth}`],
               ["Default notice channel", preferences.defaultNoticeChannel],
             ].map(([label, value]) => (
-              <div key={label}>
+              <div
+                key={label}
+                className="rounded-lg border border-border/50 bg-muted/20 px-3 py-2.5"
+              >
                 <dt className="text-xs font-medium text-muted-foreground">{label}</dt>
-                <dd className="mt-0.5 font-medium">{value}</dd>
+                <dd className="mt-0.5 text-sm font-semibold">{value}</dd>
               </div>
             ))}
           </dl>
-        </div>
+        </AdminPanel>
       </section>
 
-      <section className="space-y-4">
-        <h2 className="font-semibold">Integrations</h2>
-        <div className="surface-card divide-y">
+      <section className="space-y-3">
+        <AdminSectionLabel>Integrations</AdminSectionLabel>
+        <div className="admin-panel divide-y">
           {integrations.map((item) => (
             <div
               key={item.id}
@@ -55,7 +62,7 @@ export function AdminSettingsWorkspace({
                 <p className="font-medium">{item.label}</p>
                 <p className="text-sm text-muted-foreground">{item.description}</p>
               </div>
-              <Badge variant={item.enabled ? "default" : "outline"}>
+              <Badge variant={item.enabled ? "default" : "outline"} className="text-[10px]">
                 {item.enabled ? "Enabled" : item.phase ?? "Disabled"}
               </Badge>
             </div>
@@ -63,8 +70,8 @@ export function AdminSettingsWorkspace({
         </div>
       </section>
 
-      <section className="space-y-4">
-        <h2 className="font-semibold">Roles ({roles.length})</h2>
+      <section className="space-y-2">
+        <AdminSectionLabel>Roles ({roles.length})</AdminSectionLabel>
         <p className="text-sm text-muted-foreground">
           Role definitions are managed under Users → Roles & permissions.
         </p>
