@@ -3,8 +3,8 @@
 import { usePathname } from "next/navigation";
 import { PublicHeader, PublicFooter } from "@/components/layout/public-header";
 
-/** Resident auth screens use a centered card — no public header/footer */
-const BARE_LAYOUT_PREFIXES = ["/login/resident"];
+/** Auth / login screens use a focused shell — no public header/footer */
+const BARE_LAYOUT_PREFIXES = ["/login"];
 
 export function PublicLayoutShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();

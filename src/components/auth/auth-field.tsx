@@ -13,6 +13,7 @@ interface AuthFieldProps {
   autoComplete?: string;
   placeholder?: string;
   disabled?: boolean;
+  inputClassName?: string;
 }
 
 export function AuthField({
@@ -25,10 +26,11 @@ export function AuthField({
   autoComplete,
   placeholder,
   disabled,
+  inputClassName,
 }: AuthFieldProps) {
   return (
     <div className="space-y-1.5">
-      <label htmlFor={id} className="text-sm font-medium">
+      <label htmlFor={id} className="text-sm font-medium text-slate-700">
         {label}
       </label>
       <Input
@@ -40,6 +42,7 @@ export function AuthField({
         placeholder={placeholder}
         disabled={disabled}
         aria-invalid={Boolean(error)}
+        className={cn("h-10 rounded-xl bg-[#f8fafc]", inputClassName)}
       />
       {error && <p className="text-xs text-destructive">{error}</p>}
     </div>

@@ -1,13 +1,14 @@
 import Link from "next/link";
 import {
-  User,
+  ArrowRight,
   ClipboardList,
   Shield,
-  ArrowRight,
+  User,
 } from "lucide-react";
-import { ButtonLink } from "@/components/ui/button-link";
+import { AuthShell } from "@/components/auth/auth-layout";
 import { routes } from "@/config/routes";
 import { getApartment } from "@/lib/data";
+import { cn } from "@/lib/utils";
 
 const portals = [
   {
@@ -15,18 +16,21 @@ const portals = [
     title: "Resident",
     description: "Sign in or create a resident account",
     icon: User,
+    tone: "bg-sky-50 text-sky-700 ring-sky-200/80",
   },
   {
     href: routes.dashboard.inspector.root,
     title: "Inspector",
-    description: "Apartment management · daily operations",
+    description: "Daily ops · residents, dues, notices",
     icon: ClipboardList,
+    tone: "bg-teal-50 text-teal-700 ring-teal-200/80",
   },
   {
     href: routes.dashboard.admin.root,
     title: "Admin",
-    description: "Apartment configuration · build the society",
+    description: "Setup · flats, billing, balance sheet",
     icon: Shield,
+    tone: "bg-indigo-50 text-indigo-700 ring-indigo-200/80",
   },
 ];
 
@@ -34,48 +38,39 @@ export default function LoginPage() {
   const apartment = getApartment();
 
   return (
-    <div className="flex min-h-[calc(100vh-8rem)] items-center justify-center px-4 py-12">
-      <div className="w-full max-w-lg">
-        <div className="text-center">
-          <h1 className="text-2xl font-semibold tracking-tight">Portal access</h1>
-          <p className="mt-2 text-sm text-muted-foreground">
-            Sign in as resident, apartment inspector, or apartment admin for{" "}
-            {apartment.name}. Full authentication arrives in Phase 2.
-          </p>
-        </div>
-
-        <div className="mt-8 space-y-3">
-          {portals.map((portal) => (
-            <Link
-              key={portal.href}
-              href={portal.href}
-              className="group flex items-center gap-4 rounded-xl border bg-card p-5 shadow-sm transition-all hover:border-primary/50 hover:shadow-md"
-            >
-              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10">
-                <portal.icon className="h-5 w-5 text-primary" />
-              </div>
-              <div className="min-w-0 flex-1 text-left">
-                <div className="flex items-center gap-2">
-                  <h2 className="font-semibold">{portal.title}</h2>
-                  <span className="rounded bg-muted px-1.5 py-0.5 text-[10px] font-medium text-muted-foreground">
-                    Shell
-                  </span>
-                </div>
-                <p className="text-sm text-muted-foreground">
-                  {portal.description}
-                </p>
-              </div>
-              <ArrowRight className="h-4 w-4 text-muted-foreground group-hover:text-primary" />
-            </Link>
-          ))}
-        </div>
-
-        <div className="mt-6 text-center">
-          <ButtonLink variant="link" size="sm" href={routes.public.home}>
-            ← Back to home
-          </ButtonLink>
-        </div>
+    <AuthShell width="chooser" showHomeLink>
+      <div className="text-center">
+        <h1 className="font-[family-name:var(--font-landing-display)] text-2xl font-semibold tracking-tight text-slate-900">
+          Choose your portal
+        </h1>
+        <p className="mt-2 text-sm leading-relaxed text-slate-500">
+          Access {apartment.name} as a resident, inspector, or admin.
+        </p>
       </div>
-    </div>
+
+      <div className="mt-7 space-y-2.5">
+        {portals.map((portal) => (
+          <Link
+            key={portal.href}
+            href={portal.href}
+            className="group flex items-center gap-4 rounded-2xl border border-slate-200/90 bg-[#f8fafc] p-4 transition-[border-color,background-color,box-shadow,transform] duration-200 ease-out hover:-translate-y-0.5 hover:border-primary/25 hover:bg-white hover:shadow-[0_10px_30px_rgba(15,23,42,0.06)]"
+          >
+            <div
+              className={cn(
+                "flex h-11 w-11 shrink-0 items-center justify-center rounded-xl ring-1",
+                portal.tone
+              )}
+            >
+              <portal.icon className="h-5 w-5" />
+            </div>
+            <div className="min-w-0 flex-1 text-left">
+              <h2 className="font-semibold text-slate-900">{portal.title}</h2>
+              <p className="text-sm text-slate-500">{portal.description}</p>
+            </div>
+            <ArrowRight className="h-4 w-4 shrink-0 text-slate-300 transition-colors group-hover:text-primary" />
+          </Link>
+        ))}
+      </div>
+    </AuthShell>
   );
 }

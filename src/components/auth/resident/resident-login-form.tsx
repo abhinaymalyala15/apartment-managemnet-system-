@@ -55,7 +55,7 @@ export function ResidentLoginForm({ registered = false }: ResidentLoginFormProps
   return (
     <AuthLayout title="Login" subtitle="Sign in to your resident account">
       {registered && (
-        <div className="mb-5 rounded-lg border border-emerald-200 bg-emerald-50 px-3 py-2.5 text-sm text-emerald-800 dark:border-emerald-900/50 dark:bg-emerald-950/40 dark:text-emerald-200">
+        <div className="mb-5 rounded-xl border border-emerald-200 bg-emerald-50 px-3 py-2.5 text-sm text-emerald-800">
           Account created successfully. You can now log in.
         </div>
       )}
@@ -87,13 +87,13 @@ export function ResidentLoginForm({ registered = false }: ResidentLoginFormProps
           />
 
           {formError && (
-            <p className="rounded-lg border border-destructive/30 bg-destructive/5 px-3 py-2 text-sm text-destructive">
+            <p className="rounded-xl border border-destructive/30 bg-destructive/5 px-3 py-2 text-sm text-destructive">
               {formError}
             </p>
           )}
 
           <AuthFormActions>
-            <Button type="submit" className="w-full" disabled={isSubmitting}>
+            <Button type="submit" className="h-10 w-full rounded-full" disabled={isSubmitting}>
               {isSubmitting ? (
                 <>
                   <Loader2 className="mr-2 h-4 w-4 animate-spin" />
@@ -103,7 +103,11 @@ export function ResidentLoginForm({ registered = false }: ResidentLoginFormProps
                 "Login"
               )}
             </Button>
-            <ButtonLink href={routes.auth.resident.register} variant="outline" className="w-full">
+            <ButtonLink
+              href={routes.auth.resident.register}
+              variant="outline"
+              className="h-10 w-full rounded-full"
+            >
               Create account
             </ButtonLink>
           </AuthFormActions>
@@ -112,13 +116,13 @@ export function ResidentLoginForm({ registered = false }: ResidentLoginFormProps
 
       {!isLoading && (
         <>
-          <p className="mt-6 text-center text-xs text-muted-foreground">
-            Demo account: <span className="font-medium">srinivas</span> /{" "}
-            <span className="font-medium">demo123</span>
+          <p className="mt-6 rounded-xl border border-slate-200/80 bg-[#f8fafc] px-3 py-2.5 text-center text-xs text-slate-500">
+            Demo · <span className="font-semibold text-slate-700">srinivas</span> /{" "}
+            <span className="font-semibold text-slate-700">demo123</span>
           </p>
 
-          <p className="mt-3 text-center text-sm text-muted-foreground">
-            <Link href={routes.auth.resident.entry} className="text-primary hover:underline">
+          <p className="mt-4 text-center text-sm text-slate-500">
+            <Link href={routes.auth.resident.entry} className="font-medium text-primary hover:underline">
               ← Back
             </Link>
           </p>

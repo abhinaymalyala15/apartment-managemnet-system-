@@ -65,15 +65,15 @@ export function ResidentRegisterForm() {
     return (
       <AuthLayout title="Account created" subtitle="You're almost ready to go.">
         <div className="space-y-4 text-center">
-          <div className="rounded-lg border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-800 dark:border-emerald-900/50 dark:bg-emerald-950/40 dark:text-emerald-200">
+          <div className="rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-800">
             Account created successfully. You can now log in.
           </div>
-          <p className="text-sm text-muted-foreground">
+          <p className="text-sm text-slate-500">
             Redirecting to login in a few seconds…
           </p>
           <ButtonLink
             href={`${routes.auth.resident.login}?registered=1`}
-            className="w-full"
+            className="h-10 w-full rounded-full"
           >
             Go to login
           </ButtonLink>
@@ -145,13 +145,13 @@ export function ResidentRegisterForm() {
         />
 
         {formError && (
-          <p className="rounded-lg border border-destructive/30 bg-destructive/5 px-3 py-2 text-sm text-destructive">
+          <p className="rounded-xl border border-destructive/30 bg-destructive/5 px-3 py-2 text-sm text-destructive">
             {formError}
           </p>
         )}
 
         <AuthFormActions>
-          <Button type="submit" className="w-full" disabled={isSubmitting}>
+          <Button type="submit" className="h-10 w-full rounded-full" disabled={isSubmitting}>
             {isSubmitting ? (
               <>
                 <Loader2 className="mr-2 h-4 w-4 animate-spin" />
@@ -161,7 +161,11 @@ export function ResidentRegisterForm() {
               "Create account"
             )}
           </Button>
-          <ButtonLink href={routes.auth.resident.login} variant="outline" className="w-full">
+          <ButtonLink
+            href={routes.auth.resident.login}
+            variant="outline"
+            className="h-10 w-full rounded-full"
+          >
             Back to login
           </ButtonLink>
         </AuthFormActions>
