@@ -4,6 +4,7 @@ import {
   Calendar,
   CheckCircle2,
   Clock,
+  FileSpreadsheet,
   Home,
   IndianRupee,
   Megaphone,
@@ -271,10 +272,16 @@ export function ResidentDashboard({
       {/* Quick access */}
       <section className="space-y-3">
         <h2 className="section-title">Quick access</h2>
-        <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
           {[
             { label: "My flat", href: `${root}/flat`, icon: Home, hint: flat.flatNumber },
             { label: "Bills", href: `${root}/payments`, icon: Wallet, hint: isPaid ? "Paid" : "Due" },
+            {
+              label: "Balance Sheet",
+              href: routes.dashboard.resident.financialStatements,
+              icon: FileSpreadsheet,
+              hint: "This month",
+            },
             { label: "Notices", href: `${root}/notices`, icon: Bell, hint: `${notices.length}` },
             { label: "Visits", href: `${root}/services`, icon: Wrench, hint: `${upcomingServices.length} upcoming` },
           ].map((action) => (

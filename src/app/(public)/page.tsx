@@ -1,11 +1,11 @@
 import Link from "next/link";
 import {
-  Building2,
   ArrowRight,
   User,
   ClipboardList,
   Shield,
 } from "lucide-react";
+import { AppLogoMark } from "@/components/brand/app-logo";
 import { Badge } from "@/components/ui/badge";
 import { ButtonLink } from "@/components/ui/button-link";
 import { appConfig } from "@/config/app";
@@ -50,9 +50,7 @@ export default function HomePage() {
 
         <div className="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
-            <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-primary shadow-md shadow-primary/20">
-              <Building2 className="h-7 w-7 text-primary-foreground" />
-            </div>
+            <AppLogoMark size="xl" className="mx-auto drop-shadow-md" />
 
             <div className="mt-6 flex flex-wrap items-center justify-center gap-2">
               <Badge variant="secondary" className="font-normal">

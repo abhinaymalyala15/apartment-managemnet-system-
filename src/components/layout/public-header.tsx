@@ -2,10 +2,10 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Building2, Menu } from "lucide-react";
+import { Menu } from "lucide-react";
+import { AppLogo } from "@/components/brand/app-logo";
 import { ButtonLink } from "@/components/ui/button-link";
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
-import { appConfig } from "@/config/app";
 import { routes } from "@/config/routes";
 import { cn } from "@/lib/utils";
 
@@ -22,15 +22,7 @@ export function PublicHeader() {
   return (
     <header className="sticky top-0 z-50 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-3 px-4 sm:px-6 lg:px-8">
-        <Link href="/" className="flex min-w-0 items-center gap-2.5">
-          <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary">
-            <Building2 className="h-5 w-5 text-primary-foreground" />
-          </div>
-          <div className="min-w-0 hidden flex-col sm:flex">
-            <span className="truncate text-sm font-semibold leading-none">{appConfig.name}</span>
-            <span className="truncate text-[10px] text-muted-foreground">{appConfig.tagline}</span>
-          </div>
-        </Link>
+        <AppLogo href="/" size="sm" className="min-w-0" />
 
         <nav className="hidden items-center gap-1 md:flex">
           {publicNav.map((item) => (
@@ -95,12 +87,7 @@ export function PublicFooter() {
       <div className="mx-auto max-w-7xl px-4 py-10 sm:py-12 sm:px-6 lg:px-8">
         <div className="grid gap-8 sm:grid-cols-2 md:grid-cols-3">
           <div className="sm:col-span-2 md:col-span-1">
-            <div className="flex items-center gap-2">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary">
-                <Building2 className="h-4 w-4 text-primary-foreground" />
-              </div>
-              <span className="font-semibold">ApartmentERP</span>
-            </div>
+            <AppLogo size="sm" />
             <p className="mt-3 text-sm text-muted-foreground">
               A complete ERP platform for apartment communities. Digitizing
               society management across India.

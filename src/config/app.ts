@@ -5,6 +5,7 @@
 
 export const appConfig = {
   name: "ApartmentERP",
+  logoSrc: "/logo.png",
   tagline: "Community Management Platform",
   description:
     "A complete multi-tenant ERP platform for apartment communities across India.",

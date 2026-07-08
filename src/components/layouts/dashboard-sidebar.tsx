@@ -2,12 +2,13 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Building2, LogOut } from "lucide-react";
+import { LogOut } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { appConfig } from "@/config/app";
 import { routes } from "@/config/routes";
 import type { RoleNavConfig } from "@/config/navigation";
 import { ButtonLink } from "@/components/ui/button-link";
+import { AppLogoMark } from "@/components/brand/app-logo";
 
 interface DashboardSidebarProps {
   config: RoleNavConfig;
@@ -26,16 +27,7 @@ export function DashboardSidebar({ config, onNavigate }: DashboardSidebarProps) 
           isAdmin ? "border-slate-800 bg-slate-900" : "border-border bg-card"
         )}
       >
-        <div
-          className={cn(
-            "flex h-10 w-10 items-center justify-center rounded-xl shadow-lg",
-            isAdmin
-              ? "bg-gradient-to-br from-primary to-violet-600 shadow-primary/30"
-              : "rounded-lg bg-primary"
-          )}
-        >
-          <Building2 className="h-5 w-5 text-white" />
-        </div>
+        <AppLogoMark size="sm" className="shrink-0" />
         <div className="min-w-0 flex-1">
           <p
             className={cn(

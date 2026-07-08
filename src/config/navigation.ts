@@ -15,6 +15,7 @@ import {
   UserCheck,
   Layers,
   FileText,
+  FileSpreadsheet,
 } from "lucide-react";
 import { routes } from "./routes";
 import type { DashboardRole } from "./routes";
@@ -101,6 +102,11 @@ export const roleNavigation: Record<DashboardRole, RoleNavConfig> = {
             href: `${routes.dashboard.resident.root}/payments`,
             icon: Wallet,
           },
+          {
+            label: "Balance Sheet",
+            href: routes.dashboard.resident.financialStatements,
+            icon: FileSpreadsheet,
+          },
         ],
       },
       {
@@ -138,6 +144,11 @@ export const roleNavigation: Record<DashboardRole, RoleNavConfig> = {
             label: "Maintenance",
             href: routes.dashboard.inspector.maintenance.outstanding,
             icon: Wallet,
+          },
+          {
+            label: "Balance Sheet",
+            href: routes.dashboard.inspector.financialStatements,
+            icon: FileSpreadsheet,
           },
           {
             label: "Complaints",
@@ -211,6 +222,11 @@ export const roleNavigation: Record<DashboardRole, RoleNavConfig> = {
             label: "Billing Setup",
             href: routes.dashboard.admin.billing.flats,
             icon: Wallet,
+          },
+          {
+            label: "Balance Sheet",
+            href: routes.dashboard.admin.financialStatements.root,
+            icon: FileSpreadsheet,
           },
           {
             label: "Services",

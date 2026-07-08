@@ -26,6 +26,7 @@ export const routes = {
   dashboard: {
     resident: {
       root: "/resident",
+      financialStatements: "/resident/financial-statements",
     },
     inspector: {
       root: "/inspector",
@@ -42,6 +43,7 @@ export const routes = {
         receipts: "/inspector/maintenance/receipts",
         statements: "/inspector/maintenance/statements",
       },
+      financialStatements: "/inspector/financial-statements",
       complaints: {
         root: "/inspector/complaints",
         open: "/inspector/complaints/open",
@@ -181,6 +183,10 @@ export const routes = {
       },
       documents: "/admin/documents",
       settings: "/admin/settings",
+      financialStatements: {
+        root: "/admin/financial-statements",
+        create: "/admin/financial-statements/create",
+      },
     },
     /** @deprecated use admin — /platform redirects to /admin */
     platform: {

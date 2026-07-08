@@ -7,6 +7,7 @@ import {
   Wrench,
   User,
   ArrowRight,
+  FileSpreadsheet,
 } from "lucide-react";
 import { routes } from "@/config/routes";
 import { cn } from "@/lib/utils";
@@ -46,6 +47,11 @@ const primaryTiles = [
 
 const secondaryLinks = [
   { label: "Society visits", href: `${root}/services`, icon: Wrench },
+  {
+    label: "Balance Sheet",
+    href: routes.dashboard.resident.financialStatements,
+    icon: FileSpreadsheet,
+  },
   { label: "My account", href: `${root}/profile`, icon: User },
 ];
 
