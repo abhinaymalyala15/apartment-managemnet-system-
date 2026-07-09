@@ -52,7 +52,7 @@ export function PublicHeader() {
               "fixed inset-x-0 top-0",
               scrolled
                 ? "border-b border-slate-200/80 bg-white/90 shadow-[0_8px_30px_rgba(15,23,42,0.06)] backdrop-blur-xl"
-                : "border-b border-transparent bg-gradient-to-b from-white/80 via-white/40 to-transparent"
+                : "border-b border-transparent bg-transparent"
             )
           : useLandingHeader
             ? "sticky top-0 border-b border-slate-200/80 bg-white/90 shadow-[0_8px_30px_rgba(15,23,42,0.06)] backdrop-blur-xl"

@@ -9,7 +9,28 @@ interface LandingPageHeroProps {
   imageAlt: string;
   className?: string;
   compact?: boolean;
+  /** Gray mist overlay — blends into dark sections below */
+  gradientTone?: "light" | "gray";
+  /** Grow to fill a flex/grid parent (used with stats band below) */
+  fill?: boolean;
+  /** Vertical placement of hero copy */
+  contentPosition?: "bottom" | "center";
 }
+
+const GRADIENTS = {
+  light: {
+    linear:
+      "linear-gradient(115deg,rgba(243,246,251,0.96)_0%,rgba(243,246,251,0.82)_42%,rgba(20,32,56,0.45)_100%)",
+    radial:
+      "radial-gradient(ellipse_at_12%_40%,rgba(255,255,255,0.5),transparent_50%)",
+  },
+  gray: {
+    linear:
+      "linear-gradient(112deg,rgba(226,232,240,0.68)_0%,rgba(203,213,225,0.42)_34%,rgba(148,163,184,0.22)_62%,rgba(20,32,56,0.32)_100%)",
+    radial:
+      "radial-gradient(ellipse_at_16%_36%,rgba(248,250,252,0.38),transparent_56%)",
+  },
+} as const;
 
 export function LandingPageHero({
   eyebrow,
@@ -19,12 +40,22 @@ export function LandingPageHero({
   imageAlt,
   className,
   compact = false,
+  gradientTone = "light",
+  fill = false,
+  contentPosition,
 }: LandingPageHeroProps) {
+  const gradient = GRADIENTS[gradientTone];
+  const position = contentPosition ?? (fill ? "center" : "bottom");
+
   return (
     <section
       className={cn(
-        "relative isolate overflow-hidden",
-        compact ? "min-h-[280px] sm:min-h-[320px]" : "min-h-[360px] sm:min-h-[420px]",
+        "relative isolate min-h-0 overflow-hidden",
+        fill
+          ? "h-full"
+          : compact
+            ? "min-h-[280px] sm:min-h-[320px]"
+            : "min-h-[360px] sm:min-h-[420px]",
         className
       )}
     >
@@ -36,19 +67,35 @@ export function LandingPageHero({
         sizes="100vw"
         className="object-cover object-center"
       />
-      <div className="absolute inset-0 bg-[linear-gradient(115deg,rgba(243,246,251,0.96)_0%,rgba(243,246,251,0.82)_42%,rgba(20,32,56,0.45)_100%)]" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_12%_40%,rgba(255,255,255,0.5),transparent_50%)]" />
-      <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#142038] to-transparent" />
+      <div
+        className="absolute inset-0"
+        style={{ background: gradient.linear }}
+      />
+      <div
+        className="absolute inset-0"
+        style={{ background: gradient.radial }}
+      />
+      {gradientTone === "gray" && (
+        <div className="absolute inset-y-0 left-0 w-[min(100%,44rem)] bg-gradient-to-r from-[#e2e8f0]/75 via-[#cbd5e1]/35 to-transparent" />
+      )}
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-[#142038]/90 via-[#142038]/40 to-transparent sm:h-24" />
 
-      <div className="relative mx-auto flex max-w-7xl flex-col justify-end px-4 pb-12 pt-24 sm:px-6 sm:pb-14 sm:pt-28 lg:px-8">
+      <div
+        className={cn(
+          "relative mx-auto flex h-full max-w-7xl flex-col px-4 sm:px-6 lg:px-8",
+          position === "center"
+            ? "justify-center py-8 sm:py-10"
+            : "justify-end pb-10 pt-20 sm:pb-12 sm:pt-24"
+        )}
+      >
         <div className="max-w-2xl landing-anim-rise">
           <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-primary">
             {eyebrow}
           </p>
-          <h1 className="mt-4 font-[family-name:var(--font-landing-display)] text-[clamp(2.25rem,5vw,3.75rem)] font-semibold leading-[1.02] tracking-[-0.03em] text-balance text-slate-900">
+          <h1 className="mt-3 font-[family-name:var(--font-landing-display)] text-[clamp(2rem,4.5vw,3.5rem)] font-semibold leading-[1.05] tracking-[-0.03em] text-balance text-slate-900 sm:mt-4">
             {title}
           </h1>
-          <p className="mt-4 max-w-xl text-base leading-relaxed text-slate-700 sm:text-lg">
+          <p className="mt-3 max-w-xl text-base leading-relaxed text-slate-700 sm:mt-4 sm:text-lg">
             {description}
           </p>
         </div>

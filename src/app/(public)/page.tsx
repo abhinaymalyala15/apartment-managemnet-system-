@@ -6,14 +6,11 @@ import {
   Shield,
   User,
 } from "lucide-react";
-import { AppLogoMark } from "@/components/brand/app-logo";
+import { HomeHeroBanner } from "@/components/public/home-hero-banner";
 import { ButtonLink } from "@/components/ui/button-link";
 import { appConfig } from "@/config/app";
 import { routes } from "@/config/routes";
 import { getApartment } from "@/lib/data";
-
-const HERO_IMAGE =
-  "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=2000&q=80";
 
 export default function HomePage() {
   const apartment = getApartment();
@@ -56,66 +53,11 @@ export default function HomePage() {
 
   return (
     <div className="landing bg-[#f3f6fb] text-slate-900">
-      {/* Light hero — soft courtyard light */}
-      <section className="relative isolate min-h-[min(100svh,880px)] overflow-hidden">
-        <Image
-          src={HERO_IMAGE}
-          alt="Modern apartment community exterior"
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover object-[center_35%] landing-anim-zoom"
-        />
-        <div className="absolute inset-0 bg-[linear-gradient(115deg,rgba(243,246,251,0.94)_0%,rgba(243,246,251,0.78)_40%,rgba(15,23,42,0.35)_78%,rgba(15,23,42,0.55)_100%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_18%_30%,rgba(255,255,255,0.55),transparent_48%)]" />
-        <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#142038] to-transparent" />
-
-        <div className="relative mx-auto flex min-h-[min(100svh,880px)] max-w-7xl flex-col justify-end px-4 pb-20 pt-28 sm:px-6 sm:pb-24 sm:pt-32 lg:px-8">
-          <div className="max-w-2xl landing-anim-rise">
-            <div className="flex items-center gap-3">
-              <AppLogoMark
-                size="lg"
-                className="drop-shadow-[0_10px_24px_rgba(15,23,42,0.18)]"
-              />
-              <div>
-                <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-primary">
-                  Community operations
-                </p>
-                <p className="mt-0.5 text-sm text-slate-600">
-                  {apartment.city} · Demo live
-                </p>
-              </div>
-            </div>
-
-            <h1 className="mt-8 font-[family-name:var(--font-landing-display)] text-[clamp(2.6rem,6.5vw,4.75rem)] font-semibold leading-[0.96] tracking-[-0.03em] text-balance text-slate-900">
-              {appConfig.name}
-            </h1>
-            <p className="mt-5 max-w-xl text-lg leading-relaxed text-slate-700 sm:text-xl">
-              Light enough for everyday living. Deep enough for the work that
-              runs a society — residents, inspectors, and admins together.
-            </p>
-
-            <div className="mt-9 flex flex-wrap items-center gap-3">
-              <ButtonLink
-                size="lg"
-                href={routes.public.login}
-                className="h-12 rounded-full px-6 text-base font-semibold shadow-[0_12px_32px_rgba(37,99,235,0.22)]"
-              >
-                Enter portals
-                <ArrowRight className="ml-1.5 h-4 w-4" />
-              </ButtonLink>
-              <ButtonLink
-                size="lg"
-                href={routes.public.about}
-                variant="outline"
-                className="h-12 rounded-full border-white/70 bg-white/70 px-6 text-base text-slate-800 backdrop-blur hover:bg-white"
-              >
-                About the demo
-              </ButtonLink>
-            </div>
-          </div>
-        </div>
-      </section>
+      <HomeHeroBanner
+        appName={appConfig.name}
+        city={apartment.city}
+        tagline="Light enough for everyday living. Deep enough for the work that runs a society — residents, inspectors, and admins together."
+      />
 
       {/* Deep portal band — little dark, elevated light cards */}
       <section
