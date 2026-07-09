@@ -1,10 +1,12 @@
+"use client";
+
 import { ResidentPageHeader } from "@/components/resident/resident-page-header";
 import { ResidentContent } from "@/components/resident/resident-content";
 import { FilterableNoticeList } from "@/components/resident/filterable-notice-list";
-import { getResidentContext } from "@/lib/resident-context";
+import { useResidentPortal } from "@/contexts/resident-portal-context";
 
 export default function ResidentNoticesPage() {
-  const { notices } = getResidentContext();
+  const { notices } = useResidentPortal();
 
   return (
     <>

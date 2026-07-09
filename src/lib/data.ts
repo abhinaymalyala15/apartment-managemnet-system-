@@ -19,6 +19,7 @@ import committeeContactsData from "@/data/committee-contacts.json";
 import documentsData from "@/data/documents.json";
 
 import demoUsersData from "@/data/demo-users.json";
+import { listStoredPublished } from "@/lib/communication-storage";
 
 import type {
   Apartment,
@@ -109,6 +110,10 @@ export function getResident(): Resident {
   return residents.find((r) => r.id === DEMO_RESIDENT_ID)!;
 }
 
+export function getResidentById(id: string): Resident | undefined {
+  return residents.find((r) => r.id === id);
+}
+
 export function getDemoUsers(): DemoUsersFile {
   return demoUsers;
 }
@@ -152,7 +157,14 @@ export function getPaymentsRecordedOn(dateIso: string): Payment[] {
 }
 
 export function getNotices(): Notice[] {
-  return [...notices].sort(
+  const merged = [...listStoredPublished(), ...notices];
+  const seen = new Set<string>();
+  const unique = merged.filter((n) => {
+    if (seen.has(n.id)) return false;
+    seen.add(n.id);
+    return true;
+  });
+  return unique.sort(
     (a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
   );
 }

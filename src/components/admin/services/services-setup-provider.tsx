@@ -4,12 +4,18 @@ import {
   createContext,
   useCallback,
   useContext,
+  useEffect,
   useMemo,
+  useRef,
   useState,
   type ReactNode,
 } from "react";
 import type { AdminServiceAsset, ServicePublishStatus } from "@/types";
 import { getAdminServiceAssets } from "@/lib/admin-services-setup-data";
+import {
+  loadServicesRegistry,
+  saveServicesRegistry,
+} from "@/lib/admin-local-storage";
 
 type AssetDraft = Omit<AdminServiceAsset, "id" | "apartmentId"> & {
   id?: string;
@@ -32,7 +38,23 @@ function newId(prefix: string) {
 }
 
 export function ServicesSetupProvider({ children }: { children: ReactNode }) {
-  const [assets, setAssets] = useState<AdminServiceAsset[]>(() => getAdminServiceAssets());
+  const [assets, setAssets] = useState<AdminServiceAsset[]>(() =>
+    getAdminServiceAssets()
+  );
+  const hydrated = useRef(false);
+
+  useEffect(() => {
+    const stored = loadServicesRegistry();
+    if (stored?.length) {
+      setAssets(stored);
+    }
+    hydrated.current = true;
+  }, []);
+
+  useEffect(() => {
+    if (!hydrated.current) return;
+    saveServicesRegistry(assets);
+  }, [assets]);
 
   const assetSummary = useMemo(
     () => ({

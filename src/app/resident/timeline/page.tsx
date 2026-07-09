@@ -1,11 +1,13 @@
+"use client";
+
 import { ResidentPageHeader } from "@/components/resident/resident-page-header";
 import { ResidentContent } from "@/components/resident/resident-content";
 import { ActivityTimeline, ActivityTimelineHeader } from "@/components/shared/activity-timeline";
 import { getResidentTimeline } from "@/lib/data";
-import { getResidentContext } from "@/lib/resident-context";
+import { useResidentPortal } from "@/contexts/resident-portal-context";
 
 export default function ResidentTimelinePage() {
-  const { flat } = getResidentContext();
+  const { flat } = useResidentPortal();
   const timeline = getResidentTimeline(flat.id);
 
   return (

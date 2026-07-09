@@ -1,6 +1,5 @@
-import { redirect } from "next/navigation";
-import { routes } from "@/config/routes";
+import { SentNoticesWorkspace } from "@/components/inspector/communication/sent-notices-workspace";
 
 export default function PublishedNoticesPage() {
-  redirect(routes.dashboard.inspector.notices.root);
+  return <SentNoticesWorkspace />;
 }

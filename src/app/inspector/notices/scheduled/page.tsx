@@ -1,6 +1,5 @@
-import { redirect } from "next/navigation";
-import { routes } from "@/config/routes";
+import { ScheduledNoticesWorkspace } from "@/components/inspector/communication/scheduled-notices-workspace";
 
-export default function ScheduledNoticesPage() {
-  redirect(routes.dashboard.inspector.notices.root);
+export default function NoticeScheduledPage() {
+  return <ScheduledNoticesWorkspace />;
 }

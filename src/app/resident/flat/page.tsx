@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import { ResidentPageHeader } from "@/components/resident/resident-page-header";
 import { ResidentContent } from "@/components/resident/resident-content";
@@ -12,14 +14,14 @@ import {
   getOccupancyLabel,
   getResidentTypeLabel,
 } from "@/lib/data";
-import { getResidentContext } from "@/lib/resident-context";
+import { useResidentPortal } from "@/contexts/resident-portal-context";
 import { routes } from "@/config/routes";
 import { Car, Home, Users, Wallet } from "lucide-react";
 
 const root = routes.dashboard.resident.root;
 
 export default function ResidentFlatPage() {
-  const { flat, block, owner, tenants } = getResidentContext();
+  const { flat, block, owner, tenants } = useResidentPortal();
   const monthlyCharge = getMonthlyMaintenanceCharge(flat);
   const activeTenant = tenants[0];
 

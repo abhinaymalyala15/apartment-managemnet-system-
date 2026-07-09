@@ -1,11 +1,13 @@
+"use client";
+
 import { ResidentPageHeader } from "@/components/resident/resident-page-header";
 import { ResidentContent } from "@/components/resident/resident-content";
 import { ResidentSummary } from "@/components/resident/resident-summary";
 import { ResidentLogoutButton } from "@/components/auth/resident/resident-logout-button";
-import { getResidentContext } from "@/lib/resident-context";
+import { useResidentPortal } from "@/contexts/resident-portal-context";
 
 export default function ResidentProfilePage() {
-  const ctx = getResidentContext();
+  const ctx = useResidentPortal();
 
   return (
     <>

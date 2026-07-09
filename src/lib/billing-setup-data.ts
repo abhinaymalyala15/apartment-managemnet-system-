@@ -58,8 +58,9 @@ export function getBillingSetupConfig(): BillingSetupConfig {
   };
 }
 
-export function getFlatBillingRows(): FlatBillingRow[] {
-  const config = getBillingSetupConfig();
+export function buildFlatBillingRowsFromConfig(
+  config: BillingSetupConfig
+): FlatBillingRow[] {
   return getFlats()
     .sort((a, b) =>
       a.flatNumber.localeCompare(b.flatNumber, undefined, { numeric: true })
@@ -82,6 +83,10 @@ export function getFlatBillingRows(): FlatBillingRow[] {
             : assignment.maintenanceAmount + assignment.otherAmount,
       };
     });
+}
+
+export function getFlatBillingRows(): FlatBillingRow[] {
+  return buildFlatBillingRowsFromConfig(getBillingSetupConfig());
 }
 
 export function getBillingSetupSummary() {

@@ -1,10 +1,12 @@
+"use client";
+
 import { ResidentPageHeader } from "@/components/resident/resident-page-header";
 import { ResidentContent } from "@/components/resident/resident-content";
 import { FilterableServiceList } from "@/components/resident/filterable-service-list";
-import { getResidentContext } from "@/lib/resident-context";
+import { useResidentPortal } from "@/contexts/resident-portal-context";
 
 export default function ResidentServicesPage() {
-  const { services } = getResidentContext();
+  const { services } = useResidentPortal();
 
   return (
     <>

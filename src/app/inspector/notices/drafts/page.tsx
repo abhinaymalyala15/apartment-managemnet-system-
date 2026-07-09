@@ -1,6 +1,5 @@
-import { redirect } from "next/navigation";
-import { routes } from "@/config/routes";
+import { DraftNoticesWorkspace } from "@/components/inspector/communication/draft-notices-workspace";
 
 export default function NoticeDraftsPage() {
-  redirect(routes.dashboard.inspector.notices.root);
+  return <DraftNoticesWorkspace />;
 }

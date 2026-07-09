@@ -14,6 +14,7 @@ import {
   getNoticeAudienceLabel,
   type NoticePeriodFilter,
 } from "@/lib/communication-data";
+import { useCommunicationActions } from "@/components/inspector/communication/communication-provider";
 import type { Notice } from "@/types";
 import { cn } from "@/lib/utils";
 
@@ -26,10 +27,11 @@ const PERIOD_OPTIONS = [
 export function SentNoticesWorkspace() {
   const [periodFilter, setPeriodFilter] = useState<NoticePeriodFilter>("all");
   const [search, setSearch] = useState("");
+  const { noticesVersion } = useCommunicationActions();
 
   const periodBase = useMemo(
     () => getPublishedNoticesForPeriod(periodFilter),
-    [periodFilter]
+    [periodFilter, noticesVersion]
   );
 
   const filtered = useMemo(() => {

@@ -26,11 +26,13 @@ export interface CommunicationActionContext {
 interface CommunicationContextValue {
   activeAction: CommunicationAction | null;
   actionContext: CommunicationActionContext;
+  noticesVersion: number;
   openAction: (
     action: CommunicationAction,
     context?: CommunicationActionContext
   ) => void;
   closeAction: () => void;
+  refreshNotices: () => void;
 }
 
 const CommunicationContext = createContext<CommunicationContextValue | null>(
@@ -43,6 +45,11 @@ export function CommunicationProvider({ children }: { children: ReactNode }) {
   );
   const [actionContext, setActionContext] =
     useState<CommunicationActionContext>({});
+  const [noticesVersion, setNoticesVersion] = useState(0);
+
+  const refreshNotices = useCallback(() => {
+    setNoticesVersion((v) => v + 1);
+  }, []);
 
   const openAction = useCallback(
     (action: CommunicationAction, context: CommunicationActionContext = {}) => {
@@ -58,8 +65,15 @@ export function CommunicationProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const value = useMemo(
-    () => ({ activeAction, actionContext, openAction, closeAction }),
-    [activeAction, actionContext, openAction, closeAction]
+    () => ({
+      activeAction,
+      actionContext,
+      noticesVersion,
+      openAction,
+      closeAction,
+      refreshNotices,
+    }),
+    [activeAction, actionContext, noticesVersion, openAction, closeAction, refreshNotices]
   );
 
   return (

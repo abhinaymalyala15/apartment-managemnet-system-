@@ -10,10 +10,20 @@ import {
 } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { useCommunicationActions } from "@/components/inspector/communication/communication-provider";
+import {
+  useCommunicationActions,
+  type CommunicationAction,
+} from "@/components/inspector/communication/communication-provider";
 import { getBlocks } from "@/lib/data";
+import {
+  addStoredPublished,
+  createDraftFromForm,
+  publishDraftAsNotice,
+  upsertStoredDraft,
+} from "@/lib/communication-storage";
+import type { Notice } from "@/types";
 
-function DemoBanner({
+function SuccessBanner({
   message,
   onDismiss,
 }: {
@@ -24,7 +34,7 @@ function DemoBanner({
     <div className="rounded-lg border border-success/30 bg-success/10 px-4 py-3 text-sm">
       <p className="font-medium text-success">{message}</p>
       <p className="mt-1 text-muted-foreground">
-        Demo mode — notice would appear in resident app and timeline on save.
+        Saved locally — visible in this workspace and the resident notices feed.
       </p>
       <Button size="sm" variant="outline" className="mt-3" onClick={onDismiss}>
         Close
@@ -68,10 +78,17 @@ function NoticeComposeDrawer({
 }: {
   open: boolean;
   onOpenChange: (open: boolean) => void;
-  mode: string;
+  mode: CommunicationAction | string;
   defaultTitle?: string;
 }) {
+  const { refreshNotices } = useCommunicationActions();
   const [submitted, setSubmitted] = useState(false);
+  const [successMessage, setSuccessMessage] = useState("");
+  const [title, setTitle] = useState(defaultTitle ?? "");
+  const [content, setContent] = useState("");
+  const [category, setCategory] = useState<Notice["category"]>("general");
+  const [priority, setPriority] = useState<Notice["priority"]>("medium");
+  const [audience, setAudience] = useState<Notice["audience"]>("all");
   const blocks = getBlocks();
   const isEmergency = mode === "emergency";
   const isSchedule = mode === "schedule";
@@ -84,22 +101,70 @@ function NoticeComposeDrawer({
     emergency: "Emergency notice",
   };
 
-  const successMessages: Record<string, string> = {
-    compose: "Draft saved.",
-    "edit-draft": "Draft updated.",
-    publish: "Notice published to residents.",
-    schedule: "Notice scheduled for publishing.",
-    emergency: "Emergency alert sent to all residents.",
-  };
-
-  function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    setSubmitted(true);
+  function resetForm() {
+    setSubmitted(false);
+    setSuccessMessage("");
+    setTitle(defaultTitle ?? "");
+    setContent("");
+    setCategory(isEmergency ? "emergency" : "general");
+    setPriority(isEmergency ? "high" : "medium");
+    setAudience("all");
   }
 
   function handleClose(next: boolean) {
-    if (!next) setSubmitted(false);
+    if (!next) resetForm();
     onOpenChange(next);
+  }
+
+  function saveDraft() {
+    const draft = createDraftFromForm({
+      title,
+      content,
+      category,
+      priority,
+      audience,
+      isEmergency: category === "emergency",
+    });
+    upsertStoredDraft(draft);
+    refreshNotices();
+    setSuccessMessage("Draft saved.");
+    setSubmitted(true);
+  }
+
+  function publishNow() {
+    const draft = createDraftFromForm({
+      title,
+      content,
+      category: isEmergency ? "emergency" : category,
+      priority: isEmergency ? "high" : priority,
+      audience,
+      isEmergency: isEmergency || category === "emergency",
+    });
+    const notice = publishDraftAsNotice(draft);
+    addStoredPublished(notice);
+    refreshNotices();
+    setSuccessMessage(
+      isEmergency
+        ? "Emergency alert sent to all residents."
+        : "Notice published to residents."
+    );
+    setSubmitted(true);
+  }
+
+  function handleSubmit(e: React.FormEvent, intent: "draft" | "publish" | "schedule") {
+    e.preventDefault();
+    if (intent === "draft") {
+      saveDraft();
+      return;
+    }
+    if (intent === "publish" || isEmergency || mode === "publish" || mode === "emergency") {
+      publishNow();
+      return;
+    }
+    saveDraft();
+    setSuccessMessage("Notice scheduled for publishing.");
+    setSubmitted(true);
+    refreshNotices();
   }
 
   return (
@@ -110,23 +175,27 @@ function NoticeComposeDrawer({
           <SheetDescription>
             {isEmergency
               ? "High-priority alert — sent immediately to all residents."
-              : "Compose, target audience, and publish or schedule."}
+              : "Compose, target audience, and publish or save as draft."}
           </SheetDescription>
         </SheetHeader>
 
         {submitted ? (
           <div className="mt-6">
-            <DemoBanner
-              message={successMessages[mode] ?? "Saved."}
+            <SuccessBanner
+              message={successMessage || "Saved."}
               onDismiss={() => handleClose(false)}
             />
           </div>
         ) : (
-          <form onSubmit={handleSubmit} className="mt-6 space-y-4">
+          <form
+            onSubmit={(e) => handleSubmit(e, "draft")}
+            className="mt-6 space-y-4"
+          >
             <div className="space-y-2">
               <label className="text-sm font-medium">Title</label>
               <Input
-                defaultValue={defaultTitle}
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
                 placeholder="Notice title"
                 required
               />
@@ -136,6 +205,8 @@ function NoticeComposeDrawer({
               <textarea
                 rows={5}
                 required
+                value={content}
+                onChange={(e) => setContent(e.target.value)}
                 placeholder="Write the announcement…"
                 className="flex w-full rounded-lg border border-input bg-background px-3 py-2 text-sm"
               />
@@ -145,7 +216,11 @@ function NoticeComposeDrawer({
                 <label className="text-sm font-medium">Category</label>
                 <select
                   className="flex h-10 w-full rounded-lg border border-input bg-background px-3 text-sm"
-                  defaultValue={isEmergency ? "emergency" : "general"}
+                  value={category}
+                  onChange={(e) =>
+                    setCategory(e.target.value as Notice["category"])
+                  }
+                  disabled={isEmergency}
                 >
                   <option value="general">General</option>
                   <option value="maintenance">Maintenance</option>
@@ -157,7 +232,11 @@ function NoticeComposeDrawer({
                 <label className="text-sm font-medium">Priority</label>
                 <select
                   className="flex h-10 w-full rounded-lg border border-input bg-background px-3 text-sm"
-                  defaultValue={isEmergency ? "high" : "medium"}
+                  value={priority}
+                  onChange={(e) =>
+                    setPriority(e.target.value as Notice["priority"])
+                  }
+                  disabled={isEmergency}
                 >
                   <option value="low">Low</option>
                   <option value="medium">Medium</option>
@@ -168,9 +247,11 @@ function NoticeComposeDrawer({
             <div className="space-y-2">
               <label className="text-sm font-medium">Audience</label>
               <select
-                id="audience"
                 className="flex h-10 w-full rounded-lg border border-input bg-background px-3 text-sm"
-                defaultValue={isEmergency ? "all" : "all"}
+                value={audience}
+                onChange={(e) =>
+                  setAudience(e.target.value as Notice["audience"])
+                }
               >
                 <option value="all">All residents</option>
                 <option value="owners">Owners only</option>
@@ -196,10 +277,7 @@ function NoticeComposeDrawer({
                 <label className="text-sm font-medium">
                   {isSchedule ? "Publish at" : "Schedule (optional)"}
                 </label>
-                <Input
-                  type="datetime-local"
-                  defaultValue="2025-07-10T09:00"
-                />
+                <Input type="datetime-local" defaultValue="2025-07-10T09:00" />
               </div>
             )}
             <div className="flex flex-wrap gap-2 pt-2">
@@ -210,10 +288,7 @@ function NoticeComposeDrawer({
                   </Button>
                   <Button
                     type="button"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      handleSubmit(e as unknown as React.FormEvent);
-                    }}
+                    onClick={(e) => handleSubmit(e, "publish")}
                   >
                     Publish now
                   </Button>
@@ -223,13 +298,21 @@ function NoticeComposeDrawer({
                 <Button type="submit">Save draft</Button>
               )}
               {mode === "publish" && (
-                <Button type="submit">Publish</Button>
+                <Button type="button" onClick={(e) => handleSubmit(e, "publish")}>
+                  Publish
+                </Button>
               )}
               {mode === "schedule" && (
-                <Button type="submit">Schedule</Button>
+                <Button type="button" onClick={(e) => handleSubmit(e, "schedule")}>
+                  Schedule
+                </Button>
               )}
               {mode === "emergency" && (
-                <Button type="submit" variant="destructive">
+                <Button
+                  type="button"
+                  variant="destructive"
+                  onClick={(e) => handleSubmit(e, "publish")}
+                >
                   Send emergency alert
                 </Button>
               )}
@@ -268,7 +351,7 @@ function ArchiveConfirmDrawer({
         </SheetHeader>
         {done ? (
           <div className="mt-6">
-            <DemoBanner
+            <SuccessBanner
               message="Notice archived."
               onDismiss={() => handleClose(false)}
             />

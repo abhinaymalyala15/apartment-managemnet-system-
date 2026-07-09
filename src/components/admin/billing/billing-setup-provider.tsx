@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import {
   createContext,
   useCallback,
@@ -14,6 +15,11 @@ import type {
   FlatBillingStatus,
 } from "@/types";
 import { getDemoTodayIso } from "@/lib/billing-setup-data";
+import {
+  loadBillingSetup,
+  saveBillingSetup,
+} from "@/lib/admin-local-storage";
+import { buildFlatBillingRowsFromConfig } from "@/lib/billing-setup-data";
 
 interface BillingSetupContextValue {
   config: BillingSetupConfig;
@@ -56,6 +62,18 @@ export function BillingSetupProvider({
   const [billingPeriod, setBillingPeriodState] = useState(initialConfig.billingPeriod);
   const [ratePerSqft, setRatePerSqftState] = useState(initialConfig.ratePerSqft);
   const [rows, setRows] = useState<FlatBillingRow[]>(initialRows);
+  const hydrated = useRef(false);
+
+  useEffect(() => {
+    const stored = loadBillingSetup();
+    if (stored) {
+      setOtherColumnLabelState(stored.otherColumnLabel);
+      setBillingPeriodState(stored.billingPeriod);
+      setRatePerSqftState(stored.ratePerSqft);
+      setRows(buildFlatBillingRowsFromConfig(stored));
+    }
+    hydrated.current = true;
+  }, []);
 
   const recomputeRow = useCallback(
     (row: FlatBillingRow, patch: Partial<FlatBillingRow>): FlatBillingRow => {
@@ -173,6 +191,11 @@ export function BillingSetupProvider({
     }),
     [otherColumnLabel, billingPeriod, ratePerSqft, rows]
   );
+
+  useEffect(() => {
+    if (!hydrated.current) return;
+    saveBillingSetup(config);
+  }, [config]);
 
   const value: BillingSetupContextValue = {
     config,

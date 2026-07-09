@@ -1,3 +1,5 @@
+"use client";
+
 import { ResidentPageHeader } from "@/components/resident/resident-page-header";
 import { ResidentContent } from "@/components/resident/resident-content";
 import { ResidentStatusBanner } from "@/components/resident/resident-status-banner";
@@ -11,12 +13,12 @@ import {
   getMonthlyMaintenanceCharge,
   getPaidThisYearTotal,
 } from "@/lib/data";
-import { getResidentContext } from "@/lib/resident-context";
+import { useResidentPortal } from "@/contexts/resident-portal-context";
 import { IndianRupee, CalendarCheck } from "lucide-react";
 
 export default function ResidentPaymentsPage() {
   const apartment = getApartment();
-  const { payments, flat } = getResidentContext();
+  const { payments, flat } = useResidentPortal();
   const monthlyCharge = getMonthlyMaintenanceCharge(flat);
   const year = getCurrentYear();
   const paidThisYear = getPaidThisYearTotal(payments);

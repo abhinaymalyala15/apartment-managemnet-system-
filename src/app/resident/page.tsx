@@ -1,10 +1,12 @@
+"use client";
+
 import { ResidentContent } from "@/components/resident/resident-content";
 import { ResidentDashboard } from "@/components/resident/resident-dashboard";
-import { getResidentContext } from "@/lib/resident-context";
+import { useResidentPortal } from "@/contexts/resident-portal-context";
 
 export default function ResidentDashboardPage() {
   const { resident, flat, block, payments, notices, services } =
-    getResidentContext();
+    useResidentPortal();
 
   return (
     <ResidentContent>

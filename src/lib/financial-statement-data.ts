@@ -138,3 +138,13 @@ export function publishFinancialStatement(
   };
   return upsertFinancialStatement(published);
 }
+
+export function deleteFinancialStatement(id: string): void {
+  if (typeof window === "undefined") return;
+  const all = readStore().filter((s) => s.id !== id);
+  writeStore(all);
+}
+
+export function listDraftFinancialStatements(): FinancialStatement[] {
+  return listFinancialStatements().filter((s) => s.status === "draft");
+}

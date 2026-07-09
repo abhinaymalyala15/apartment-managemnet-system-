@@ -17,6 +17,7 @@ import type {
 
 import { getBlocks, getNotices, getDemoToday, getDemoTodayIso } from "@/lib/data";
 import { formatDateTime } from "@/lib/admin-data";
+import { listStoredDrafts } from "@/lib/communication-storage";
 
 const drafts = noticeDraftsData as NoticeDraft[];
 const archived = noticeArchivedData as ArchivedNotice[];
@@ -24,7 +25,14 @@ const scheduled = noticeScheduledData as ScheduledNotice[];
 const history = noticeHistoryData as NoticeHistoryEvent[];
 
 export function getNoticeDrafts(): NoticeDraft[] {
-  return [...drafts].sort(
+  const merged = [...listStoredDrafts(), ...drafts];
+  const seen = new Set<string>();
+  const unique = merged.filter((d) => {
+    if (seen.has(d.id)) return false;
+    seen.add(d.id);
+    return true;
+  });
+  return unique.sort(
     (a, b) =>
       new Date(b.lastEditedAt).getTime() - new Date(a.lastEditedAt).getTime()
   );
@@ -88,9 +96,10 @@ export function getPublishedNoticesForPeriod(
 
 export function getCommunicationSummary(): CommunicationSummary {
   const published = getPublishedNotices();
+  const allDrafts = getNoticeDrafts();
   return {
     publishedCount: published.length,
-    draftCount: drafts.length,
+    draftCount: allDrafts.length,
     scheduledCount: scheduled.length,
     archivedCount: archived.length,
     emergencyCount: published.filter((n) => n.isEmergency || n.category === "emergency").length,

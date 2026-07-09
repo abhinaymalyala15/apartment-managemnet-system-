@@ -4,6 +4,7 @@ import { ResidentAuthGuard } from "@/components/auth/resident/resident-auth-guar
 import { DashboardLayout } from "@/components/layouts/dashboard-layout";
 import { ResidentBottomNav } from "@/components/resident/resident-bottom-nav";
 import { ResidentAuthProvider, useResidentAuth } from "@/contexts/resident-auth-context";
+import { ResidentPortalProvider } from "@/contexts/resident-portal-context";
 import type { RoleNavConfig } from "@/config/navigation";
 import { roleNavigation } from "@/config/navigation";
 
@@ -38,7 +39,9 @@ export default function ResidentLayout({
   return (
     <ResidentAuthProvider>
       <ResidentAuthGuard>
-        <ResidentShell>{children}</ResidentShell>
+        <ResidentPortalProvider>
+          <ResidentShell>{children}</ResidentShell>
+        </ResidentPortalProvider>
       </ResidentAuthGuard>
     </ResidentAuthProvider>
   );

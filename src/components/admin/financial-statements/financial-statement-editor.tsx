@@ -24,6 +24,7 @@ import { routes } from "@/config/routes";
 import { formatCurrency } from "@/lib/data";
 import {
   createDraftExpenseStatement,
+  getFinancialStatement,
   publishFinancialStatement,
   sumStatementLines,
   upsertFinancialStatement,
@@ -38,6 +39,7 @@ import type {
 interface FinancialStatementEditorProps {
   buildingName: string;
   preparedBy?: string;
+  statementId?: string;
 }
 
 function StatusBadge({ status }: { status: FinancialStatementStatus }) {
@@ -120,13 +122,24 @@ function formatModified(iso: string): string {
 export function FinancialStatementEditor({
   buildingName,
   preparedBy = "Apartment Administrator",
+  statementId,
 }: FinancialStatementEditorProps) {
-  const [statement, setStatement] = useState<FinancialStatement>(() =>
-    createDraftExpenseStatement({ buildingName, preparedBy })
-  );
+  const [statement, setStatement] = useState<FinancialStatement>(() => {
+    if (statementId) {
+      const existing = getFinancialStatement(statementId);
+      if (existing) return existing;
+    }
+    return createDraftExpenseStatement({ buildingName, preparedBy });
+  });
   const [previewOpen, setPreviewOpen] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
   const [isPending, startTransition] = useTransition();
+
+  useEffect(() => {
+    if (!statementId) return;
+    const existing = getFinancialStatement(statementId);
+    if (existing) setStatement(existing);
+  }, [statementId]);
 
   const totals = useMemo(
     () => sumStatementLines(statement.lines),
@@ -299,7 +312,7 @@ export function FinancialStatementEditor({
               </Button>
             )}
             <ButtonLink
-              href={routes.dashboard.admin.root}
+              href={routes.dashboard.admin.financialStatements.root}
               variant="ghost"
               className="ml-auto"
             >

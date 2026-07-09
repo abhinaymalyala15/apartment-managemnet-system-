@@ -1,12 +1,14 @@
+"use client";
+
 import { ResidentPageHeader } from "@/components/resident/resident-page-header";
 import { ResidentContent } from "@/components/resident/resident-content";
-import { getResidentContext } from "@/lib/resident-context";
+import { useResidentPortal } from "@/contexts/resident-portal-context";
 import { formatDate, getCommitteeContacts } from "@/lib/data";
 import { EmptyState } from "@/components/ui/empty-state";
 import { Users, Phone } from "lucide-react";
 
 export default function ResidentFamilyPage() {
-  const { resident, family } = getResidentContext();
+  const { resident, family } = useResidentPortal();
   const contacts = getCommitteeContacts();
 
   const familyOnly = family.map((m) => ({

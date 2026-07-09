@@ -1,6 +1,5 @@
-import { redirect } from "next/navigation";
-import { routes } from "@/config/routes";
+import { ArchivedNoticesWorkspace } from "@/components/inspector/communication/archived-notices-workspace";
 
-export default function ArchivedNoticesPage() {
-  redirect(routes.dashboard.inspector.notices.root);
+export default function NoticeArchivedPage() {
+  return <ArchivedNoticesWorkspace />;
 }
